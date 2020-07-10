@@ -1,0 +1,11 @@
+- Récupération des données 
+---- connexion avec API
+---- MCD
+
+- SaaS
+---- Regarder Azure
+
+- Bottle
+
+- Algorithmes
+
