@@ -15,7 +15,8 @@ try:
     if r.status_code != 200:
         raise Exception("La requête possède un code différent de 200: %s" % r.status_code)
     print('Chargement des stop areas réussi !')
-except:
+except Exception as e:
+    print(e)
     exit
 
 with open('stop_areas.json',"w") as file:
