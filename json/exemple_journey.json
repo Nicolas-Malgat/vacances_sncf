@@ -1,0 +1,697 @@
+{
+    "lien de la requete": "https://api.navitia.io/v1/coverage/sncf/journeys?from=admin%3Afr%3A63113&to=admin%3Afr%3A75056&",
+    "tickets": [],
+    "links": [
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/journeys?to=admin%3Afr%3A75056&datetime_represents=departure&from=admin%3Afr%3A63113&datetime=20200716T133001",
+            "type": "next",
+            "rel": "next",
+            "templated": false
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/journeys?to=admin%3Afr%3A75056&datetime_represents=arrival&from=admin%3Afr%3A63113&datetime=20200716T165659",
+            "type": "prev",
+            "rel": "prev",
+            "templated": false
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/journeys?to=admin%3Afr%3A75056&datetime_represents=departure&from=admin%3Afr%3A63113&datetime=20200716T000000",
+            "type": "first",
+            "rel": "first",
+            "templated": false
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/journeys?to=admin%3Afr%3A75056&datetime_represents=arrival&from=admin%3Afr%3A63113&datetime=20200716T235959",
+            "type": "last",
+            "rel": "last",
+            "templated": false
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/stop_points\/{stop_point.id}",
+            "type": "stop_point",
+            "rel": "stop_points",
+            "templated": true
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/stop_areas\/{stop_area.id}",
+            "type": "stop_area",
+            "rel": "stop_areas",
+            "templated": true
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/vehicle_journeys\/{vehicle_journey.id}",
+            "type": "vehicle_journey",
+            "rel": "vehicle_journeys",
+            "templated": true
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/routes\/{route.id}",
+            "type": "route",
+            "rel": "routes",
+            "templated": true
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/commercial_modes\/{commercial_mode.id}",
+            "type": "commercial_mode",
+            "rel": "commercial_modes",
+            "templated": true
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/lines\/{line.id}",
+            "type": "line",
+            "rel": "lines",
+            "templated": true
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/physical_modes\/{physical_mode.id}",
+            "type": "physical_mode",
+            "rel": "physical_modes",
+            "templated": true
+        },
+        {
+            "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/networks\/{network.id}",
+            "type": "network",
+            "rel": "networks",
+            "templated": true
+        }
+    ],
+    "journeys": [
+        {
+            "status": "",
+            "distances": {
+                "taxi": 0,
+                "car": 0,
+                "walking": 0,
+                "bike": 0,
+                "ridesharing": 0
+            },
+            "links": [
+                {
+                    "href": "https:\/\/api.navitia.io\/v1\/coverage\/sncf\/journeys?from=admin%3Afr%3A63113&last_section_mode%5B%5D=walking&is_journey_schedules=True&direct_path=none&to=admin%3Afr%3A75056&min_nb_journeys=5&min_nb_transfers=0&allowed_id%5B%5D=stop_point%3AOCE%3ASP%3ACorailIntercit%C3%A9-87686667&allowed_id%5B%5D=stop_point%3AOCE%3ASP%3ACorailIntercit%C3%A9-87734004&first_section_mode%5B%5D=walking",
+                    "type": "journeys",
+                    "rel": "same_journey_schedules",
+                    "templated": false
+                }
+            ],
+            "tags": [
+                "walking",
+                "ecologic"
+            ],
+            "nb_transfers": 0,
+            "durations": {
+                "taxi": 0,
+                "walking": 0,
+                "car": 0,
+                "ridesharing": 0,
+                "bike": 0,
+                "total": 12420
+            },
+            "arrival_date_time": "20200716T165700",
+            "calendars": [
+                {
+                    "exceptions": [
+                        {
+                            "type": "remove",
+                            "datetime": "20200711"
+                        },
+                        {
+                            "type": "remove",
+                            "datetime": "20200712"
+                        }
+                    ],
+                    "active_periods": [
+                        {
+                            "begin": "20200706",
+                            "end": "20200831"
+                        }
+                    ],
+                    "week_pattern": {
+                        "monday": true,
+                        "tuesday": true,
+                        "friday": true,
+                        "wednesday": true,
+                        "thursday": true,
+                        "sunday": true,
+                        "saturday": true
+                    }
+                }
+            ],
+            "departure_date_time": "20200716T133000",
+            "requested_date_time": "20200716T113910",
+            "fare": {
+                "found": false,
+                "total": {
+                    "value": "0.0"
+                },
+                "links": []
+            },
+            "co2_emission": {
+                "value": 4286.2491,
+                "unit": "gEC"
+            },
+            "type": "best",
+            "duration": 12420,
+            "sections": [
+                {
+                    "from": {
+                        "embedded_type": "administrative_region",
+                        "quality": 0,
+                        "administrative_region": {
+                            "insee": "63113",
+                            "name": "Clermont-Ferrand",
+                            "level": 8,
+                            "coord": {
+                                "lat": "45.7774551",
+                                "lon": "3.0819427"
+                            },
+                            "label": "Clermont-Ferrand (63000-63100)",
+                            "id": "admin:fr:63113",
+                            "zip_code": "63000;63100"
+                        },
+                        "name": "Clermont-Ferrand (63000-63100)",
+                        "id": "admin:fr:63113"
+                    },
+                    "links": [],
+                    "arrival_date_time": "20200716T133000",
+                    "co2_emission": {
+                        "value": 0.0,
+                        "unit": ""
+                    },
+                    "to": {
+                        "embedded_type": "stop_point",
+                        "stop_point": {
+                            "name": "Clermont-Ferrand",
+                            "links": [],
+                            "coord": {
+                                "lat": "45.778569",
+                                "lon": "3.100519"
+                            },
+                            "label": "Clermont-Ferrand (Clermont-Ferrand)",
+                            "equipments": [],
+                            "administrative_regions": [
+                                {
+                                    "insee": "63113",
+                                    "name": "Clermont-Ferrand",
+                                    "level": 8,
+                                    "coord": {
+                                        "lat": "45.7774551",
+                                        "lon": "3.0819427"
+                                    },
+                                    "label": "Clermont-Ferrand (63000-63100)",
+                                    "id": "admin:fr:63113",
+                                    "zip_code": "63000;63100"
+                                }
+                            ],
+                            "fare_zone": {
+                                "name": "0"
+                            },
+                            "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87734004",
+                            "stop_area": {
+                                "codes": [
+                                    {
+                                        "type": "CR-CI-CH",
+                                        "value": "0087-734004-BV"
+                                    },
+                                    {
+                                        "type": "UIC8",
+                                        "value": "87734004"
+                                    },
+                                    {
+                                        "type": "external_code",
+                                        "value": "OCE87734004"
+                                    }
+                                ],
+                                "name": "Clermont-Ferrand",
+                                "links": [],
+                                "coord": {
+                                    "lat": "45.778569",
+                                    "lon": "3.100519"
+                                },
+                                "label": "Clermont-Ferrand (Clermont-Ferrand)",
+                                "timezone": "Europe\/Paris",
+                                "id": "stop_area:OCE:SA:87734004"
+                            }
+                        },
+                        "quality": 0,
+                        "name": "Clermont-Ferrand (Clermont-Ferrand)",
+                        "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87734004"
+                    },
+                    "departure_date_time": "20200716T133000",
+                    "duration": 0,
+                    "type": "crow_fly",
+                    "id": "section_0_0",
+                    "mode": "walking"
+                },
+                {
+                    "from": {
+                        "embedded_type": "stop_point",
+                        "stop_point": {
+                            "name": "Clermont-Ferrand",
+                            "links": [],
+                            "coord": {
+                                "lat": "45.778569",
+                                "lon": "3.100519"
+                            },
+                            "label": "Clermont-Ferrand (Clermont-Ferrand)",
+                            "equipments": [],
+                            "administrative_regions": [
+                                {
+                                    "insee": "63113",
+                                    "name": "Clermont-Ferrand",
+                                    "level": 8,
+                                    "coord": {
+                                        "lat": "45.7774551",
+                                        "lon": "3.0819427"
+                                    },
+                                    "label": "Clermont-Ferrand (63000-63100)",
+                                    "id": "admin:fr:63113",
+                                    "zip_code": "63000;63100"
+                                }
+                            ],
+                            "fare_zone": {
+                                "name": "0"
+                            },
+                            "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87734004",
+                            "stop_area": {
+                                "codes": [
+                                    {
+                                        "type": "CR-CI-CH",
+                                        "value": "0087-734004-BV"
+                                    },
+                                    {
+                                        "type": "UIC8",
+                                        "value": "87734004"
+                                    },
+                                    {
+                                        "type": "external_code",
+                                        "value": "OCE87734004"
+                                    }
+                                ],
+                                "name": "Clermont-Ferrand",
+                                "links": [],
+                                "coord": {
+                                    "lat": "45.778569",
+                                    "lon": "3.100519"
+                                },
+                                "label": "Clermont-Ferrand (Clermont-Ferrand)",
+                                "timezone": "Europe\/Paris",
+                                "id": "stop_area:OCE:SA:87734004"
+                            }
+                        },
+                        "quality": 0,
+                        "name": "Clermont-Ferrand (Clermont-Ferrand)",
+                        "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87734004"
+                    },
+                    "links": [
+                        {
+                            "type": "vehicle_journey",
+                            "id": "vehicle_journey:OCE:SN005970F48048"
+                        },
+                        {
+                            "type": "line",
+                            "id": "line:OCE:645663"
+                        },
+                        {
+                            "type": "route",
+                            "id": "route:OCE:645663-CorailIntercit\u00e9-87734004-87686667"
+                        },
+                        {
+                            "type": "commercial_mode",
+                            "id": "commercial_mode:intercites"
+                        },
+                        {
+                            "type": "physical_mode",
+                            "id": "physical_mode:Train"
+                        },
+                        {
+                            "type": "network",
+                            "id": "network:sncf"
+                        }
+                    ],
+                    "arrival_date_time": "20200716T165700",
+                    "additional_informations": [
+                        "regular"
+                    ],
+                    "co2_emission": {
+                        "value": 4286.2491,
+                        "unit": "gEC"
+                    },
+                    "display_informations": {
+                        "direction": "Paris-Bercy (Paris)",
+                        "code": "",
+                        "network": "SNCF",
+                        "links": [],
+                        "color": "000000",
+                        "name": "Paris-Clermont Fd",
+                        "physical_mode": "Train",
+                        "headsign": "5970",
+                        "label": "Paris-Clermont Fd",
+                        "equipments": [],
+                        "text_color": "FFFFFF",
+                        "trip_short_name": "5970",
+                        "commercial_mode": "Intercit\u00e9s",
+                        "description": ""
+                    },
+                    "to": {
+                        "embedded_type": "stop_point",
+                        "stop_point": {
+                            "name": "Paris-Bercy",
+                            "links": [],
+                            "coord": {
+                                "lat": "48.839211",
+                                "lon": "2.382799"
+                            },
+                            "label": "Paris-Bercy (Paris)",
+                            "equipments": [],
+                            "administrative_regions": [
+                                {
+                                    "insee": "75056",
+                                    "name": "Paris",
+                                    "level": 8,
+                                    "coord": {
+                                        "lat": "48.8566969",
+                                        "lon": "2.3514616"
+                                    },
+                                    "label": "Paris (75000-75116)",
+                                    "id": "admin:fr:75056",
+                                    "zip_code": "75000;75116"
+                                }
+                            ],
+                            "fare_zone": {
+                                "name": "0"
+                            },
+                            "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87686667",
+                            "stop_area": {
+                                "codes": [
+                                    {
+                                        "type": "CR-CI-CH",
+                                        "value": "0087-686667-BV"
+                                    },
+                                    {
+                                        "type": "UIC8",
+                                        "value": "87686667"
+                                    },
+                                    {
+                                        "type": "external_code",
+                                        "value": "OCE87686667"
+                                    }
+                                ],
+                                "name": "Paris-Bercy",
+                                "links": [],
+                                "coord": {
+                                    "lat": "48.839211",
+                                    "lon": "2.382799"
+                                },
+                                "label": "Paris-Bercy (Paris)",
+                                "timezone": "Europe\/Paris",
+                                "id": "stop_area:OCE:SA:87686667"
+                            }
+                        },
+                        "quality": 0,
+                        "name": "Paris-Bercy (Paris)",
+                        "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87686667"
+                    },
+                    "base_arrival_date_time": "20200716T165700",
+                    "base_departure_date_time": "20200716T133000",
+                    "departure_date_time": "20200716T133000",
+                    "geojson": {
+                        "type": "LineString",
+                        "properties": [
+                            {
+                                "length": 360189
+                            }
+                        ],
+                        "coordinates": [
+                            [
+                                3.100519,
+                                45.778569
+                            ],
+                            [
+                                3.120813,
+                                45.889842
+                            ],
+                            [
+                                3.430489,
+                                46.12697
+                            ],
+                            [
+                                3.338755,
+                                46.561364
+                            ],
+                            [
+                                3.15087,
+                                46.987349
+                            ],
+                            [
+                                2.382799,
+                                48.839211
+                            ]
+                        ]
+                    },
+                    "duration": 12420,
+                    "type": "public_transport",
+                    "id": "section_1_0",
+                    "data_freshness": "base_schedule",
+                    "stop_date_times": [
+                        {
+                            "stop_point": {
+                                "name": "Clermont-Ferrand",
+                                "links": [],
+                                "coord": {
+                                    "lat": "45.778569",
+                                    "lon": "3.100519"
+                                },
+                                "label": "Clermont-Ferrand (Clermont-Ferrand)",
+                                "equipments": [],
+                                "fare_zone": {
+                                    "name": "0"
+                                },
+                                "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87734004"
+                            },
+                            "links": [],
+                            "arrival_date_time": "20200716T133000",
+                            "additional_informations": [],
+                            "departure_date_time": "20200716T133000",
+                            "base_arrival_date_time": "20200716T133000",
+                            "base_departure_date_time": "20200716T133000"
+                        },
+                        {
+                            "stop_point": {
+                                "name": "Riom-Ch\u00e2tel-Guyon",
+                                "links": [],
+                                "coord": {
+                                    "lat": "45.889842",
+                                    "lon": "3.120813"
+                                },
+                                "label": "Riom-Ch\u00e2tel-Guyon (Riom)",
+                                "equipments": [],
+                                "fare_zone": {
+                                    "name": "0"
+                                },
+                                "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87734053"
+                            },
+                            "links": [],
+                            "arrival_date_time": "20200716T133900",
+                            "additional_informations": [],
+                            "departure_date_time": "20200716T134100",
+                            "base_arrival_date_time": "20200716T133900",
+                            "base_departure_date_time": "20200716T134100"
+                        },
+                        {
+                            "stop_point": {
+                                "name": "Vichy",
+                                "links": [],
+                                "coord": {
+                                    "lat": "46.12697",
+                                    "lon": "3.430489"
+                                },
+                                "label": "Vichy (Vichy)",
+                                "equipments": [],
+                                "fare_zone": {
+                                    "name": "0"
+                                },
+                                "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87732008"
+                            },
+                            "links": [],
+                            "arrival_date_time": "20200716T140200",
+                            "additional_informations": [],
+                            "departure_date_time": "20200716T140400",
+                            "base_arrival_date_time": "20200716T140200",
+                            "base_departure_date_time": "20200716T140400"
+                        },
+                        {
+                            "stop_point": {
+                                "name": "Moulins-sur-Allier",
+                                "links": [],
+                                "coord": {
+                                    "lat": "46.561364",
+                                    "lon": "3.338755"
+                                },
+                                "label": "Moulins-sur-Allier (Moulins)",
+                                "equipments": [],
+                                "fare_zone": {
+                                    "name": "0"
+                                },
+                                "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87696328"
+                            },
+                            "links": [],
+                            "arrival_date_time": "20200716T143100",
+                            "additional_informations": [],
+                            "departure_date_time": "20200716T143300",
+                            "base_arrival_date_time": "20200716T143100",
+                            "base_departure_date_time": "20200716T143300"
+                        },
+                        {
+                            "stop_point": {
+                                "name": "Nevers",
+                                "links": [],
+                                "coord": {
+                                    "lat": "46.987349",
+                                    "lon": "3.15087"
+                                },
+                                "label": "Nevers (Nevers)",
+                                "equipments": [],
+                                "fare_zone": {
+                                    "name": "0"
+                                },
+                                "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87696005"
+                            },
+                            "links": [],
+                            "arrival_date_time": "20200716T145900",
+                            "additional_informations": [],
+                            "departure_date_time": "20200716T150100",
+                            "base_arrival_date_time": "20200716T145900",
+                            "base_departure_date_time": "20200716T150100"
+                        },
+                        {
+                            "stop_point": {
+                                "name": "Paris-Bercy",
+                                "links": [],
+                                "coord": {
+                                    "lat": "48.839211",
+                                    "lon": "2.382799"
+                                },
+                                "label": "Paris-Bercy (Paris)",
+                                "equipments": [],
+                                "fare_zone": {
+                                    "name": "0"
+                                },
+                                "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87686667"
+                            },
+                            "links": [],
+                            "arrival_date_time": "20200716T165700",
+                            "additional_informations": [],
+                            "departure_date_time": "20200716T165700",
+                            "base_arrival_date_time": "20200716T165700",
+                            "base_departure_date_time": "20200716T165700"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "embedded_type": "stop_point",
+                        "stop_point": {
+                            "name": "Paris-Bercy",
+                            "links": [],
+                            "coord": {
+                                "lat": "48.839211",
+                                "lon": "2.382799"
+                            },
+                            "label": "Paris-Bercy (Paris)",
+                            "equipments": [],
+                            "administrative_regions": [
+                                {
+                                    "insee": "75056",
+                                    "name": "Paris",
+                                    "level": 8,
+                                    "coord": {
+                                        "lat": "48.8566969",
+                                        "lon": "2.3514616"
+                                    },
+                                    "label": "Paris (75000-75116)",
+                                    "id": "admin:fr:75056",
+                                    "zip_code": "75000;75116"
+                                }
+                            ],
+                            "fare_zone": {
+                                "name": "0"
+                            },
+                            "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87686667",
+                            "stop_area": {
+                                "codes": [
+                                    {
+                                        "type": "CR-CI-CH",
+                                        "value": "0087-686667-BV"
+                                    },
+                                    {
+                                        "type": "UIC8",
+                                        "value": "87686667"
+                                    },
+                                    {
+                                        "type": "external_code",
+                                        "value": "OCE87686667"
+                                    }
+                                ],
+                                "name": "Paris-Bercy",
+                                "links": [],
+                                "coord": {
+                                    "lat": "48.839211",
+                                    "lon": "2.382799"
+                                },
+                                "label": "Paris-Bercy (Paris)",
+                                "timezone": "Europe\/Paris",
+                                "id": "stop_area:OCE:SA:87686667"
+                            }
+                        },
+                        "quality": 0,
+                        "name": "Paris-Bercy (Paris)",
+                        "id": "stop_point:OCE:SP:CorailIntercit\u00e9-87686667"
+                    },
+                    "links": [],
+                    "arrival_date_time": "20200716T165700",
+                    "co2_emission": {
+                        "value": 0.0,
+                        "unit": ""
+                    },
+                    "to": {
+                        "embedded_type": "administrative_region",
+                        "quality": 0,
+                        "administrative_region": {
+                            "insee": "75056",
+                            "name": "Paris",
+                            "level": 8,
+                            "coord": {
+                                "lat": "48.8566969",
+                                "lon": "2.3514616"
+                            },
+                            "label": "Paris (75000-75116)",
+                            "id": "admin:fr:75056",
+                            "zip_code": "75000;75116"
+                        },
+                        "name": "Paris (75000-75116)",
+                        "id": "admin:fr:75056"
+                    },
+                    "departure_date_time": "20200716T165700",
+                    "duration": 0,
+                    "type": "crow_fly",
+                    "id": "section_2_0",
+                    "mode": "walking"
+                }
+            ]
+        }
+    ],
+    "disruptions": [],
+    "notes": [],
+    "feed_publishers": [],
+    "context": {
+        "timezone": "Europe\/Paris",
+        "current_datetime": "20200716T113910",
+        "car_direct_path": {
+            "co2_emission": {
+                "value": 86167.2011090348,
+                "unit": "gEC"
+            }
+        }
+    },
+    "exceptions": []
+}
