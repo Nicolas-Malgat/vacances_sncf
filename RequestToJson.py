@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 load_dotenv(verbose=True)
 token_auth = os.getenv("TOKEN_AUTH")
 
+
+
 url_avec_params = 'https://api.sncf.com/v1/coverage/sncf/stop_areas'
 
 try:
