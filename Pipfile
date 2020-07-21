@@ -15,6 +15,7 @@ pprint = "*"
 python-dotenv = "*"
 pyodbc = "*"
 mysql-connector-python = "*"
+bottle = "*"
 
 [requires]
 python_version = "3.8"
