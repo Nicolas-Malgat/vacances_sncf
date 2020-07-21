@@ -1,4 +1,4 @@
-numero_dpt,departement,ville,region,longitude,latitude,region_administrative,
+numero_dpt,nom_dpt,ville,nom_region,longitude,latitude,region_admin_code,
 01,Ain,Bourg-en-Bresse,Auvergne-Rhône-Alpes,20744972067036,5.24612374301676,admin:fr:1053,
 02,Aisne,Laon,Hauts-de-France,49.57501319148936,3.61810441489362,admin:fr:2360,
 03,Allier,Moulins,Auvergne-Rhône-Alpes,49.41994084745765,3.68123322033898,admin:fr:3190,

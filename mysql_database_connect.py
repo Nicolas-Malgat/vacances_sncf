@@ -1,6 +1,7 @@
 import mysql.connector
 
 import os
+from sql_constant import DROP_TABLE,INSERT_STATEMENT,CREATE_TABLE,PREFECTURE
 from dotenv import load_dotenv
 
 load_dotenv(verbose=True)
@@ -14,8 +15,7 @@ config = {
   'user': username,
   'password': password,
   'host': server,
-  'database': database,
-  'raise_on_warnings': True
+  'database': database
 }
 
 class Connection:
@@ -25,16 +25,34 @@ class Connection:
 
         print('Successfully connected to '+database+' database.')
 
-    def create_database(self, sql_path):
-        try:
-            with open('sql/requestsTable.sql', 'r', encoding='utf-8') as sql_file:
-                sql_content = sql_file.read()
-                self.cursor.execute(sql_content, multi=True)
-        except mysql.connector.Error as err:
-            print("Failed creating database: {}".format(err))
-            exit(1)
+    def insert_data(self, table, rows):
+        """Prends en paramètre 
+        une constante de table
+        ses données au format de tableau de tuple
+
+        liste de tuple: 
+        data = [
+            ('Jane', date(2005, 2, 12)),
+            ('Joe', date(2006, 5, 23)),
+            ('John', date(2010, 10, 3)),
+        ]
+        
+        Args:
+            table (string): constant de table
+            rows (list of tuple): list contenant des tuples
+        """
+        self.cursor.executemany(INSERT_STATEMENT[table], rows)
+
+    def create_table(self, table):
+        """Permet de créer une table à partir d'une constante de table
+
+        Args:
+            table (string): nom de la table
+        """
+        self.cursor.execute(DROP_TABLE.format(table))
+        self.cursor.execute(CREATE_TABLE[table])
         print('Created database.')
 
 if __name__ == "__main__":
     connect = Connection()
-    connect.create_database('sql/requestsTable.sql')
+    connect.create_table(PREFECTURE)
