@@ -10,7 +10,7 @@ load_dotenv(verbose=True)
 
 server = os.getenv("BDD_SERVER")
 database = os.getenv("DATABASE")
-username = os.getenv("DB_USERNAME")
+username = os.getenv("DB_USER")
 password = os.getenv("DB_PASSWORD")
 driver= '{ODBC Driver 17 for SQL Server}'
 
