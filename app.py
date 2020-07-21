@@ -7,7 +7,7 @@ def index():
     return static_file('map.html', root='views')
 
 
-@route('*.js')
+@route('/javascript/<filename:re:.*\.js>')
 def send_javascript(filename):
     return static_file(filename, root='javascript')
 

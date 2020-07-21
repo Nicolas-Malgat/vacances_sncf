@@ -24,6 +24,7 @@ def get_json(url):
 
     return json_dict
 
+
 def get_journeys(json):
     """Get the journeys from a json element.
 
