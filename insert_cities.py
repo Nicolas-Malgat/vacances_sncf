@@ -9,7 +9,7 @@ if __name__ == "__main__":
         data = []
         for row in reader:
             data.append(
-                (row['region_admin_code'], row['numero_dpt'], row['nom_dpt'], row['ville'], row['nom_region'], row['longitude'], row['latitude'])
+                (row['region_admin_code'], row['numero_dpt'], row['nom_dpt'], row['prefecture'], row['nom_region'], row['longitude'], row['latitude'])
             )
 
     connect = Connection()
