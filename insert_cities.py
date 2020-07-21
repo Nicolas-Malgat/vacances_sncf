@@ -6,7 +6,7 @@ if __name__ == "__main__":
     data = []
 
     with open('sql/cities.csv', newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)    
+        reader = csv.DictReader(csvfile)
         for row in reader:
             data.append(
                 (row['region_admin_code'], row['numero_dpt'], row['nom_dpt'], row['prefecture'], row['nom_region'], row['longitude'], row['latitude'])
