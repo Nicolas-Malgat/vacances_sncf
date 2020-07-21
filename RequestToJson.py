@@ -1,9 +1,9 @@
 import requests
+import pprint
 import json
 import os
 from dotenv import load_dotenv
 
-<<<<<<< HEAD
 load_dotenv(verbose=True)
 token_auth = os.getenv("TOKEN_AUTH")
 
@@ -74,7 +74,7 @@ def get_route_infos(journey, route):
 
     Args:
         journey (dict)
-        route (int): number of the route like '0', '1'...
+        route (int): number of the route like 0, 1...
 
     Returns:
         [dict]: [id, arrival_date_time, departure_date_time, mode, type, duration, stop_date_time, from, to]
@@ -89,7 +89,7 @@ def get_stop_point(journey, route, from_to):
     """
     Args:
         journey (dict)
-        route (int): number of the route like '0', '1'...
+        route (int): number of the route like 0, 1...
         from_to (str): 'from' or 'to'
     
     Returns:
@@ -149,24 +149,18 @@ if __name__ == '__main__':
 
 
 """
-=======
-# token_auth='votre token ici, recu dans votre boite mail'
-load_dotenv(verbose=True)
-token_auth = os.getenv("TOKEN_AUTH")
-
->>>>>>> 1ee621ed7d438c3e57059861f75ffc8756dc806e
 url_avec_params = 'https://api.sncf.com/v1/coverage/sncf/stop_areas'
 
 try:
-    r = requests.get(url_avec_params, auth=(token_auth, ''))
+    r = requests.get(url_avec_params,auth=(token_auth,''))
     if r.status_code != 200:
-        raise Exception("La requête retourne code différent de 200: %s" % r.status_code)
+        raise Exception("La requête possède un code différent de 200: %s" % r.status_code)
     print('Chargement des stop areas réussi !')
 except Exception as e:
     print(e)
     exit
 
-with open('json/stop_areas.json', "w") as file:
+with open('stop_areas.json',"w") as file:
     file.write(json.dumps(r.json(), indent=2))
 print('Ecriture de stop_areas.json terminée')
 """
