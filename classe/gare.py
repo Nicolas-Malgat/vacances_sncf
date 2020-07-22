@@ -10,15 +10,13 @@ class gare:
     def from_json(cls, json):
         list_gare = []
 
-        for gare in json['stop_points']:
-            if len(gare) == 9:
-                
-                gares = cls(
-                    gare['name'],
+        for gare in json['stop_areas']:
+            if len(gare) == 8:
+                list_gare.append(cls(
+                    gare['label'],
                     gare['id'],
                     gare['administrative_regions'][0]['id'],
                     gare['coord']['lon'],
                     gare['coord']['lat']
-                )
-                for gare in 
+                ))
         return list_gare
