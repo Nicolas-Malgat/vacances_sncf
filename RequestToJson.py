@@ -101,15 +101,13 @@ def get_stop_point(journey, route, from_to):
     Returns:
         [dict]: [id, name, lat, lon, stop_area]
     """
-    get_from_to = get_route_infos(journey, route)[from_to]
-    spoint = get_from_to['stop_point']
-    coord = spoint['coord']
+    get_from_to = get_route_infos(journey, route)[from_to]['stop_point']
     stop_point = {}
-    stop_point['id'] = spoint['id']
-    stop_point['name'] = spoint['name']
-    stop_point['lat'] = coord['lat']
-    stop_point['lon'] = coord['lon']
-    stop_point['stop_area'] = spoint['stop_area']
+    stop_point['id'] = get_from_to['id']
+    stop_point['name'] = get_from_to['name']
+    stop_point['lat'] = get_from_to['coord']['lat']
+    stop_point['lon'] = get_from_to['coord']['lon']
+    stop_point['stop_area'] = get_from_to['stop_area']
     return stop_point
 
 
