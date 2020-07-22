@@ -13,8 +13,8 @@ class route:
         for route in journey['sections']:
             oneRoute = cls(
                 route['id'],
-                route['from']['stop_point']['id'],
-                route['to']['stop_point']['id'],
+                route['from']['stop_point']['stop_area']['id'],
+                route['to']['stop_point']['stop_area']['id'],
                 route['duration'],
                 route['co2_emission']['value']
             )
