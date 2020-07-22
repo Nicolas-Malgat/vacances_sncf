@@ -49,13 +49,12 @@ def get_journey_infos(journey):
         [dict]:[arrival_date_time, departure_date_time, requested_date_time,
         duration, co2_emission, sections, calendars]
     """
-    co2_emission = journey['co2_emission']
     journey_infos = {}
     journey_infos['arrival_date_time'] = journey['arrival_date_time']
     journey_infos['departure_date_time'] = journey['departure_date_time']
     journey_infos['requested_date_time'] = journey['requested_date_time']
     journey_infos['duration'] = journey['duration']
-    journey_infos['co2_emission'] = co2_emission['value']
+    journey_infos['co2_emission'] = journey['co2_emission']['value']
     journey_infos['sections'] = journey['sections']
     journey_infos['calendars'] = journey['calendars']
     return journey_infos
@@ -85,9 +84,8 @@ def get_route_infos(journey, route):
         [dict]: [id, arrival_date_time, departure_date_time, mode, type,
         duration, stop_date_time, from, to]
     """
-    sections = get_journey_infos(journey)['sections']
     route_infos = {}
-    route_infos = sections[route]
+    route_infos = get_journey_infos(journey)['sections'][route]
     return route_infos
 
 
@@ -118,8 +116,7 @@ def get_timezone(json):
     Returns:
         [str]: timezone
     """
-    select_context = json['context']
-    timezone = select_context['timezone']
+    timezone = json['context']['timezone']
     return timezone
 
 
