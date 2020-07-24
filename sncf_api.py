@@ -65,6 +65,7 @@ class sncf_api:
 if __name__ == "__main__":
     liste_des_gares = sncf_api.get_gares()
 
+    print(len(liste_des_gares))
     i = 0
     # for ma_gare in liste_des_gares:
     #     print(ma_gare.nom + ' ' + ma_gare.fk_region_admin)
@@ -77,12 +78,10 @@ if __name__ == "__main__":
     for a_journey in liste_des_journeys:
         a_journey.set_gare(liste_des_gares)
 
-    import pprint
-    pprint.pprint(liste_des_journeys[0].depart)
     for a_journey in liste_des_journeys:
         print(a_journey.depart.nom, '\t', a_journey.arrivee.nom, '\t', a_journey.duration)
         i += 1
         if i == 20:
             break
 
-    # journey.chemin_plus_court()
+    journey.plus_court_chemin(liste_des_journeys)

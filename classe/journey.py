@@ -37,3 +37,22 @@ class journey:
             ))
 
         return list_journey
+
+    @staticmethod
+    def plus_court_chemin(list_journey):
+        """ Renvoie le chemin le plus court parmis la liste
+
+        Args:
+            list_journey (list of journey): liste contenant des journey
+
+        Returns:
+            journey: objet de type journey
+        """
+
+        journey_court = list_journey[0]
+
+        for journey in list_journey:
+            if journey.duration < journey_court.duration:
+                journey_court = journey
+
+        return journey_court
