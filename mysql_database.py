@@ -1,8 +1,9 @@
 import mysql.connector
 
 import os
-from sql_constant import DROP_TABLE, INSERT_STATEMENT, CREATE_TABLE, PREFECTURE
+from sql_constant import DROP_TABLE, INSERT_STATEMENT, CREATE_TABLE, PREFECTURE, SELECT_STATEMENT
 from dotenv import load_dotenv
+import classe
 
 load_dotenv(verbose=True)
 
@@ -19,7 +20,7 @@ config = {
 }
 
 
-class Connection:
+class connection:
     def __init__(self):
         self.cnx = mysql.connector.connect(**config)
         self.cursor = self.cnx.cursor()
@@ -56,7 +57,14 @@ class Connection:
         self.cursor.execute(CREATE_TABLE[table])
         print('Created database.')
 
+    def get_data(self, table):
+        self.cursor.execute(SELECT_STATEMENT[table])
+        return self.cursor.fetchall()
+
 
 if __name__ == "__main__":
-    connect = Connection()
-    connect.create_table(PREFECTURE)
+    connect = connection()
+    # connect.create_table(PREFECTURE)
+    liste_prefecture = classe.prefecture.from_tuple(connect.get_data(PREFECTURE))
+    for prefecture in liste_prefecture:
+        print(prefecture.nom, '\t\t', prefecture.departement_code, '\t', prefecture.departement_nom)

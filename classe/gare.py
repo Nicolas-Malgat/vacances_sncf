@@ -2,7 +2,7 @@ class gare:
     def __init__(self, nom, id_gare, region_admin, longitude, latitude):
         self.nom = nom
         self.id_gare = id_gare
-        self.fk_region_admin = region_admin
+        self.region_admin = region_admin
         self.longitude = longitude
         self.latitude = latitude
 

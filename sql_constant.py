@@ -1,5 +1,10 @@
 PREFECTURE = "prefecture"
 DROP_TABLE = "DROP TABLE IF EXISTS `{}`;"
+
+SELECT_STATEMENT = {
+    'prefecture': "SELECT * FROM prefecture"
+}
+
 INSERT_STATEMENT = {
     'prefecture': "INSERT INTO prefecture (region_admin_code, departement_code, departement_name, prefecture_name, region_name, longitude, latitude) VALUES (%s, %s, %s, %s, %s, %s, %s)"    
 }
