@@ -38,6 +38,7 @@
   .menu {
     display: flex;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
   }
@@ -102,6 +103,7 @@
     }
     .logo {
       flex: 1;
+      -webkit-flex: 1;
     }
     .item.button {
       width: auto;
@@ -110,6 +112,7 @@
     }
     .toggle {
       flex: 1;
+      -webkit-flex: 1;
       text-align: right;
       order: 2;
     }
@@ -142,6 +145,7 @@
     .menu {
       align-items: flex-start;
       flex-wrap: nowrap;
+      -webkit-flex-wrap: nowrap;
       background: none;
     }
     .logo {
