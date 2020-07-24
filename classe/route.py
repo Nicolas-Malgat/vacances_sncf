@@ -37,7 +37,9 @@ class route:
         for une_gare in liste_gare:
             if self.start_station_id == une_gare.id_gare:
                 self.depart = une_gare
-            elif self.stop_station_id == une_gare.id_gare:
+            if self.stop_station_id == une_gare.id_gare:
                 self.arrivee = une_gare
+
+        # CAS D'ERREUR
         if self.depart is None or self.arrivee is None:
-            print('La route ', self.id, ' n\'a pas trouvé de gare avec les id\ndepart: ', self.start_station_id, '\narrivee: ', self.stop_station_id)
+            print('La route ', self.id, ' n\'a pas trouvé de gare avec les id\ndepart: ', self.start_station_id, ' ', self.depart, '\narrivee: ', self.stop_station_id, ' ', self.arrivee)

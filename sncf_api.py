@@ -52,9 +52,19 @@ class sncf_api:
         return list_gare_total
 
     @classmethod
-    def get_journeys(cls, depart, arrivee):
-        method_path = '/journeys?from={}&to={}'
-        method_path = method_path.format(depart, arrivee)
+    def get_journeys(cls, depart, arrivee, date):
+        """ Renvoie une liste d'objets journey
+
+        Args:
+            depart (stirng): identifiant de type admin:fr:xxxxx
+            arrivee (string): identifiant de tyype admin:fr:xxxxx
+            date (string): date sous le format AAAAMMJJTHHMMSS
+
+        Returns:
+            liste de journey: tous les trajets possibles vers l'arrivée
+        """
+        method_path = '/journeys?from={}&to={}&datetime={}'
+        method_path = method_path.format(depart, arrivee, date)
         path = cls.__path + method_path
 
         response = sncf_api.make_request(path)
@@ -73,7 +83,7 @@ if __name__ == "__main__":
     #     if i == 20:
     #         break
 
-    liste_des_journeys = sncf_api.get_journeys('admin:fr:57463', 'admin:fr:63113')
+    liste_des_journeys = sncf_api.get_journeys('admin:fr:4112', 'admin:fr:93055', '20200727T080000')
 
     for a_journey in liste_des_journeys:
         a_journey.set_gare(liste_des_gares)
