@@ -39,6 +39,24 @@ class journey:
         return list_journey
 
     @staticmethod
+    def plus_vert_chemin(list_journey):
+        """ Renvoie le chemin le moins polluant parmis la liste
+
+        Args:
+            list_journey (liste de journey): liste contenant des journey
+
+        Returns:
+            journey: objet de type journey
+        """
+        journey_vert = list_journey[0]
+
+        for journey in list_journey:
+            if journey.pollution < journey_vert.pollution:
+                journey_vert = journey
+
+        return journey_vert
+
+    @staticmethod
     def plus_court_chemin(list_journey):
         """ Renvoie le chemin le plus court parmis la liste
 
