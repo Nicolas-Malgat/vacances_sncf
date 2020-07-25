@@ -1,8 +1,5 @@
-from classe.gare import gare
-import sys
-
-
 class route:
+
     def __init__(self, id, start_station_id, stop_station_id, duration, pollution):
         self.id = id
         self.start_station_id = start_station_id

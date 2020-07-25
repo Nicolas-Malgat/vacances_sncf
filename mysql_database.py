@@ -30,6 +30,9 @@ class connection:
     def __exit__(self):
         self.cnx.close()
 
+    def commit(self):
+        self.cnx.commit()
+
     def insert_data(self, table, rows):
         """ Insère des données dans la table définie en paramètre
 
@@ -45,7 +48,6 @@ class connection:
             rows (list of tuple): list contenant des tuples
         """
         self.cursor.executemany(INSERT_STATEMENT[table], rows)
-        self.cnx.commit()
 
     def create_table(self, table):
         """ Permet de créer une table à partir du nom donné en paramètre

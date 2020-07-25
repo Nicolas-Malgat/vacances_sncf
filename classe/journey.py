@@ -3,6 +3,7 @@ import sys
 
 
 class journey:
+
     def __init__(self, departure_date_time, arrival_date_time, requested_date_time, pollution, duration, list_route):
         self.arrival_date_time = arrival_date_time
         self.departure_date_time = departure_date_time

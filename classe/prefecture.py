@@ -34,3 +34,11 @@ class prefecture:
 
         print('ERREUR la région administrative: ', gare_arrivee.region_admin, ' n\'a pas été trouvée dans la liste des préfectures\n', liste_prefecture)
         return False
+
+    @staticmethod
+    def find_by_id(liste_prefecture, id):
+        for pref in liste_prefecture:
+            if pref.region_admin == 'admin:fr:63113':
+                liste_prefecture.remove(pref)
+                return pref
+        raise Exception("l'id ", id, " n'a pas été trouvé lors de la recherche prefecture.find_by_id")

@@ -1,4 +1,5 @@
 class gare:
+    
     def __init__(self, nom, id_gare, region_admin, longitude, latitude):
         self.nom = nom
         self.id_gare = id_gare
