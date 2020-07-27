@@ -1,7 +1,6 @@
 import requests
 import os
 from classe.gare import gare
-from classe.route import route
 from classe.journey import journey
 
 
@@ -69,7 +68,10 @@ class sncf_api:
 
         response = sncf_api.make_request(path)
 
-        return journey.from_json(response.json())
+        try:
+            return journey.from_json(response.json())
+        except KeyError:
+            return None
 
 
 if __name__ == "__main__":

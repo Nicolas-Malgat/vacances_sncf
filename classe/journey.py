@@ -73,7 +73,8 @@ class journey:
         journey_court = list_journey[0]
 
         for journey in list_journey:
-            if journey.duration < journey_court.duration:
+            # s'il y a des soucis avec les dates, comparer avec dateutil.parser.isoparse()
+            if journey.arrival_date_time < journey_court.arrival_date_time:
                 journey_court = journey
 
         return journey_court
