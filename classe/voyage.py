@@ -1,6 +1,11 @@
+import uuid
+
+
 class voyage:
 
     def __init__(self, requested_date_time, liste_journey, depart_gare, departure_date_time, arrivee_gare, arrival_date_time, duration, pollution):
+        id = uuid.uuid4()
+        self.id = id.int
         self.liste_journey = liste_journey
         self.requested_date_time = requested_date_time
         self.depart = depart_gare
