@@ -39,6 +39,5 @@ class prefecture:
     def find_by_id(liste_prefecture, id):
         for pref in liste_prefecture:
             if pref.region_admin == id:
-                liste_prefecture.remove(pref)
                 return pref
         raise Exception("l'id ", id, " n'a pas été trouvé lors de la recherche prefecture.find_by_id")

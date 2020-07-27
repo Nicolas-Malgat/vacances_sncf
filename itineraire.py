@@ -28,7 +28,7 @@ class itineraire:
         liste_prefecture = self.liste_prefecture
 
         # Initialisation des variables
-        prefecture_depart = prefecture.find_by_id(liste_prefecture ,prefecture_depart_id)
+        prefecture_depart = prefecture.find_by_id(liste_prefecture, prefecture_depart_id)
         liste_prefecture.remove(prefecture_depart)
         liste_journey_finale = []
 
@@ -41,8 +41,19 @@ class itineraire:
             for pref in liste_prefecture:
                 journeys = sncf_api.get_journeys(prefecture_depart.region_admin, pref.region_admin, date_de_depart)
 
-                if journeys:
-                    liste_journey_temp.append(journeys)
+                if journeys: 
+                    for journey in journeys:
+                        print("|", end='')
+                        liste_journey_temp.append(journey)
+
+            # Au cas où aucun trajet ne permet de compléter les visites des préfectures
+            if not liste_journey_temp:
+                prefectures = map(lambda x: x.nom, liste_prefecture)
+                print(
+                    'Auncune journey pour poursuivre l\'itinéraire, préfectures non visitées:\n',
+                    '\n'.join(prefectures)
+                )
+                return liste_journey_finale
 
             # attribution des gares pour chaque journey et route
             for journey in liste_journey_temp:
@@ -55,6 +66,7 @@ class itineraire:
                 min_journey = journey.plus_court_chemin(liste_journey_temp)
 
             # preparation des varaible avant la prochaine iteration
+            print('\nNouvelle iteration:\n')
             liste_journey_finale.append(min_journey)
             prefecture_depart = prefecture.find_by_gare(liste_prefecture, min_journey.arrivee)
             liste_prefecture.remove(prefecture_depart)
