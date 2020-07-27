@@ -6,6 +6,7 @@ import classe
 from classe.prefecture import prefecture
 
 from enum import Enum
+import pprint
 
 
 class type_voyage(Enum):
@@ -61,4 +62,7 @@ class itineraire:
 if __name__ == '__main__':
     connect = connection()
     itineraire = itineraire(connect)
-    liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:63113", '20200727T080000')
+    liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
+    with open('liste_journey.txt', 'w', 'utf-8') as file:
+        file.write(pprint.pprint(liste_journey))
+    print('programme terminé !')
