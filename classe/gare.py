@@ -12,13 +12,14 @@ class gare:
 
     def enregistrer(self, connection):
 
-        data = [(
+        data = []
+        data.append((
             self.id_gare,
             self.region_admin,
             self.nom,
             self.longitude,
             self.latitude
-        )]
+        ))
 
         connection.insert_data(table.gare.value, data)
 

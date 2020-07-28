@@ -25,11 +25,12 @@ class route:
 
     def enregistrer(self, connection):
 
-        data = [(
+        data = []
+        data.append((
             self.id,
             self.depart.id_gare,
             self.arrivee.id_gare
-        )]
+        ))
 
         connection.insert_data(table.route.value, data)
 

@@ -48,6 +48,7 @@ class connection:
             table (string): constant de table
             rows (list of tuple): list contenant des tuples
         """
+
         self.cursor.executemany(INSERT_STATEMENT[table], rows)
 
     def delete_table(self, table):

@@ -72,9 +72,9 @@ class sncf_api:
             return journey.from_json(response.json())
         except KeyError:
             print("\nErreur, aucun trajet pour la recherche\n", path)
+            return None
         except AttributeError:
             print('\nErreur, la requête suivante n\'a rien renvoyé', path)
-        finally:
             return None
 
 

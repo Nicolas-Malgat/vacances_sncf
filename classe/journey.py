@@ -7,7 +7,7 @@ class journey:
 
     def __init__(self, departure_date_time, arrival_date_time, requested_date_time, pollution, duration, list_route):
         id = uuid.uuid4()
-        self.id = id.int
+        self.id = str(id.int)
         self.arrival_date_time = arrival_date_time
         self.departure_date_time = departure_date_time
         self.requested_date_time = requested_date_time
@@ -26,15 +26,18 @@ class journey:
 
     def enregistrer(self, connection, voyage_id):
 
-        data = [(
+        data = []
+        data.append((
             self.id,
             self.duration,
             self.departure_date_time,
             self.arrival_date_time,
             self.requested_date_time,
+            self.depart.id_gare,
+            self.arrivee.id_gare,
             self.pollution,
             voyage_id
-        )]
+        ))
 
         connection.insert_data(table.journey.value, data)
 

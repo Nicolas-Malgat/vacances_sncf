@@ -24,6 +24,8 @@ class itineraire:
         self.liste_des_gares = sncf_api.get_gares()
 
     def calcul_voyage(self, type_itineraire, prefecture_depart_id, date_de_depart):
+        i = 0
+
         liste_prefecture = self.liste_prefecture
 
         # Initialisation des variables
@@ -71,6 +73,11 @@ class itineraire:
             liste_prefecture.remove(prefecture_depart)
             date_de_depart = min_journey.arrival_date_time
 
+            # fin prematurée
+            if i == 2:
+                return liste_journey_finale
+            i += 1
+
         return liste_journey_finale
 
 
@@ -81,8 +88,8 @@ if __name__ == '__main__':
 
     voyage1 = voyage.from_list_journey(liste_journey)
 
-    with open('liste_journey.txt', 'w', 'utf-8') as file:
-        file.write(pprint.pprint(voyage1))
+    with open('liste_journey.txt', 'w', encoding='utf-8') as file:
+        file.write(str(pprint.pprint(voyage1)))
 
     voyage1.enregistrer(connect)
 
