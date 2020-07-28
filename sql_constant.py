@@ -95,7 +95,7 @@ CREATE_TABLE = {
         gare_id     VARCHAR(14)  NOT NULL,
         PRIMARY KEY ('route_id', 'gare_id'),
         FOREIGN KEY route_id REFERENCES route(id_route),
-        FOREIGN KEY gare_id REFERENCES gare(id_gare) 
+        FOREIGN KEY gare_id REFERENCES gare(id_gare)
     """,
 
     'route_journey': """CREATE TABLE route_journey (
