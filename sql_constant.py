@@ -39,8 +39,8 @@ CREATE_TABLE = {
         departement_name VARCHAR (255)   NOT NULL,
         prefecture_name VARCHAR (255)   NOT NULL,
         region_name     VARCHAR (255)   NOT NULL,
-        longitude       DOUBLE (17, 14),
-        latitude        DOUBLE (16, 14)
+        longitude       DOUBLE (17, 14) NOT NULL,
+        latitude        DOUBLE (16, 14) NOT NULL
     );
     """,
 
@@ -67,8 +67,8 @@ CREATE_TABLE = {
         id_gare VARCHAR(14)    PRIMARY KEY,
         region_admin VARCHAR(14),
         gare_nom VARCHAR (255)   NOT NULL,
-        longitude       DOUBLE (17, 14),
-        latitude        DOUBLE (16, 14),
+        longitude       DOUBLE (17, 14) NOT NULL,
+        latitude        DOUBLE (16, 14) NOT NULL,
         CONSTRAINT FK_prefecture
             FOREIGN KEY (region_admin) REFERENCES prefecture (region_admin_code)
     );
@@ -76,13 +76,17 @@ CREATE_TABLE = {
 
     'journey': """CREATE TABLE journey (
         id_trajet   INT(50)    PRIMARY KEY,
-        trajet_duree    INT(6),
-        heure_depart    VARCHAR(15),
-        heure_arrivee   VARCHAR(15),
-        heure_requete   VARCHAR(15),
-        pollution   DOUBLE(8, 3),
-        voyage_id   INT(50),
-        FOREIGN KEY (voyage_id) REFERENCES voyage(id_voyage)
+        trajet_duree    INT(6) NOT NULL,
+        heure_depart    VARCHAR(15) NOT NULL,
+        heure_arrivee   VARCHAR(15) NOT NULL,
+        heure_requete   VARCHAR(15) NOT NULL,
+        gare_depart_id  VARCHAR(14) NOT NULL,
+        gare_arrivee_id VARCHAR(14) NOT NULL,
+        pollution   DOUBLE(8, 3) NOT NULL,
+        voyage_id   INT(50) NOT NULL,
+        FOREIGN KEY (voyage_id) REFERENCES voyage(id_voyage),
+        FOREIGN KEY (gare_depart_id) REFERENCES gare(id_gare)
+        FOREIGN KEY (gare_arrivee_id) REFERENCES gare(id_gare),
     );
     """,
 
@@ -91,7 +95,7 @@ CREATE_TABLE = {
         gare_id     VARCHAR(14)  NOT NULL,
         PRIMARY KEY ('route_id', 'gare_id'),
         FOREIGN KEY route_id REFERENCES route(id_route),
-        FOREIGN KEY gare_id REFERENCES gare(id_gare)    
+        FOREIGN KEY gare_id REFERENCES gare(id_gare) 
     """,
 
     'route_journey': """CREATE TABLE route_journey (
