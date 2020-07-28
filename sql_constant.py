@@ -17,7 +17,7 @@ SELECT_STATEMENT = {
     'prefecture': "SELECT * FROM prefecture",
     'route': "SELECT * FROM route",
     'voyage': "SELECT * FROM voyage",
-    'journey': "SELECT * FROM voyage",
+    'journey': "SELECT * FROM journey",
     'route_gare': "SELECT * FROM route_gare",
     'route_journey': "SELECT * FROM route_journey"
 }
