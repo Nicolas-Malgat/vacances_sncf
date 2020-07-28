@@ -6,6 +6,9 @@ class table(Enum):
     route = 'route'
     voyage = 'voyage'
     gare = 'gare'
+    journey = 'journey'
+    route_gare = 'route_gare'
+    route_journey = 'route_journey'
 
 
 DROP_TABLE = "DROP TABLE IF EXISTS `{}`;"
@@ -13,14 +16,20 @@ DROP_TABLE = "DROP TABLE IF EXISTS `{}`;"
 SELECT_STATEMENT = {
     'prefecture': "SELECT * FROM prefecture",
     'route': "SELECT * FROM route",
-    'voyage': "SELECT * FROM voyage"
+    'voyage': "SELECT * FROM voyage",
+    'journey': "SELECT * FROM voyage",
+    'route_gare': "SELECT * FROM route_gare",
+    'route_journey': "SELECT * FROM route_journey"
 }
 
 INSERT_STATEMENT = {
     'prefecture': "INSERT INTO prefecture (region_admin_code, departement_code, departement_name, prefecture_name, region_name, longitude, latitude) VALUES (%s, %s, %s, %s, %s, %s, %s)",
     'route': "INSERT INTO route (id_route, gare_depart, gare_arrivee) VALUES (%s, %s, %s)",
     'voyage': "INSERT INTO voyage (id_voyage, date_time_requete, gare_depart_id, gare_arrivee_id, date_time_depart, date_time_arrivee, duree, pollution) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-    'gare': "INSERT INTO gare (id_gare, fk_region_gare, gare_nom, longitude, latitude) VALUES (%s, %s, %s, %s, %s)"
+    'gare': "INSERT INTO gare (id_gare, fk_region_gare, gare_nom, longitude, latitude) VALUES (%s, %s, %s, %s, %s)",
+    'journey': "INSERT INTO journey (id_trajet, trajet_duree, heure_depart, heure_arrivee, heure_requete, pollution, voyage_id) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+    'route_gare': "INSERT INTO route_gare (route_id, gare_id) VALUES (%s, %s)",
+    'route_journey': "INSERT INTO route_journey (route_id, journey_id) VALUES (%s, %s)"
 }
 
 CREATE_TABLE = {
@@ -36,14 +45,14 @@ CREATE_TABLE = {
     """,
 
     'route': """CREATE TABLE route (
-        id_route    INT(14)    PRIMARY KEY,
+        id_route    INT(50)    PRIMARY KEY,
         gare_depart VARCHAR (14)     NOT NULL,
         gare_arrivee VARCHAR (14)   NOT NULL
     );
     """,
 
     'voyage': """CREATE TABLE voyage (
-        id_voyage    INT(14)    PRIMARY KEY,
+        id_voyage    INT(50)    PRIMARY KEY,
         date_time_requete   VARCHAR (15) NOT NULL,
         gare_depart_id  VARCHAR(14)     NOT NULL,
         gare_arrivee_id VARCHAR(14)     NOT NULL,
@@ -56,10 +65,40 @@ CREATE_TABLE = {
 
     'gare': """CREATE TABLE gare (
         id_gare VARCHAR(14)    PRIMARY KEY,
-        FOREIGN KEY fk_region_admin REFERENCES prefecture(region_admin_code),
+        region_admin VARCHAR(14),
         gare_nom VARCHAR (255)   NOT NULL,
         longitude       DOUBLE (17, 14),
-        latitude        DOUBLE (16, 14)
+        latitude        DOUBLE (16, 14),
+        CONSTRAINT FK_prefecture
+            FOREIGN KEY (region_admin) REFERENCES prefecture (region_admin_code)
     );
+    """,
+
+    'journey': """CREATE TABLE journey (
+        id_trajet   INT(50)    PRIMARY KEY,
+        trajet_duree    INT(6),
+        heure_depart    VARCHAR(15),
+        heure_arrivee   VARCHAR(15),
+        heure_requete   VARCHAR(15),
+        pollution   DOUBLE(8, 3),
+        voyage_id   INT(50),
+        FOREIGN KEY (voyage_id) REFERENCES voyage(id_voyage)
+    );
+    """,
+
+    'route_gare': """CREATE TABLE route_gare (
+        route_id    INT(50)     NOT NULL,
+        gare_id     VARCHAR(14)  NOT NULL,
+        PRIMARY KEY ('route_id', 'gare_id'),
+        FOREIGN KEY route_id REFERENCES route(id_route),
+        FOREIGN KEY gare_id REFERENCES gare(id_gare)    
+    """,
+
+    'route_journey': """CREATE TABLE route_journey (
+        route_id    INT(50)     NOT NULL,
+        journey_id     INT(50)  NOT NULL,
+        PRIMARY KEY ('route_id', 'journey_id'),
+        FOREIGN KEY route_id REFERENCES route(id_route),
+        FOREIGN KEY journey_id REFERENCES journey(id_trajet)
     """
 }
