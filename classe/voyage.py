@@ -1,4 +1,5 @@
 import uuid
+from sql_constant import table
 
 
 class voyage:
@@ -33,3 +34,22 @@ class voyage:
             duration,
             pollution
         )
+
+    def enregistrer(self, connection):
+
+        data = [(
+            self.id,
+            self.requested_date_time,
+            self.depart.id_gare,
+            self.arrivee.id_gare,
+            self.departure_date_time,
+            self.arrival_date_time,
+            self.pollution
+        )]
+
+        connection.insert_data(table.voyage, data)
+
+        for journey in self.liste_journey:
+            journey.enregistrer(connection, self.id)
+
+        connection.commit()

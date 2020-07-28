@@ -1,5 +1,6 @@
 from classe.route import route
 import uuid
+from sql_constant import table
 
 
 class journey:
@@ -22,6 +23,31 @@ class journey:
 
         self.depart = liste[0].depart
         self.arrivee = liste[len(liste) - 1].arrivee
+
+    def enregistrer(self, connection, voyage_id):
+
+        data = [(
+            self.id,
+            self.duration,
+            self.departure_date_time,
+            self.arrival_date_time,
+            self.requested_date_time,
+            self.pollution,
+            voyage_id
+        )]
+
+        connection.insert_data(table.journey, data)
+
+        # Insertion de route suivi de l'insertion de la relation route_journey
+        data_relation = []
+        for une_route in self.liste_route:
+            une_route.enregistrer(connection)
+
+            data_relation.append((
+                une_route.id,
+                self.id
+            ))
+        connection.insert_data(table.route_journey, data_relation)
 
     @classmethod
     def from_json(cls, json):
