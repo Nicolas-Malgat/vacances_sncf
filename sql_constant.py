@@ -59,7 +59,7 @@ CREATE_TABLE = {
         date_time_depart    VARCHAR(15) NOT NULL,
         date_time_arrivee   VARCHAR(15) NOT NULL,
         duree   INT(6)  NOT NULL,
-        pollution   DOUBLE(8, 3), NOT NULL
+        pollution   DOUBLE(8, 3) NOT NULL
     );
     """,
 
@@ -84,25 +84,25 @@ CREATE_TABLE = {
         gare_arrivee_id VARCHAR(14) NOT NULL,
         pollution   DOUBLE(8, 3) NOT NULL,
         voyage_id   INT(50) NOT NULL,
-        FOREIGN KEY (voyage_id) REFERENCES voyage(id_voyage),
-        FOREIGN KEY (gare_depart_id) REFERENCES gare(id_gare)
-        FOREIGN KEY (gare_arrivee_id) REFERENCES gare(id_gare),
+        FOREIGN KEY (voyage_id) REFERENCES voyage(id_voyage)
     );
     """,
 
     'route_gare': """CREATE TABLE route_gare (
         route_id    INT(50)     NOT NULL,
         gare_id     VARCHAR(14)  NOT NULL,
-        PRIMARY KEY ('route_id', 'gare_id'),
-        FOREIGN KEY route_id REFERENCES route(id_route),
-        FOREIGN KEY gare_id REFERENCES gare(id_gare)
+        PRIMARY KEY (route_id, gare_id),
+        FOREIGN KEY (route_id) REFERENCES route(id_route),
+        FOREIGN KEY (gare_id) REFERENCES gare(id_gare)
+    );
     """,
 
     'route_journey': """CREATE TABLE route_journey (
         route_id    INT(50)     NOT NULL,
         journey_id     INT(50)  NOT NULL,
-        PRIMARY KEY ('route_id', 'journey_id'),
-        FOREIGN KEY route_id REFERENCES route(id_route),
-        FOREIGN KEY journey_id REFERENCES journey(id_trajet)
+        PRIMARY KEY (route_id, journey_id),
+        FOREIGN KEY (route_id) REFERENCES route(id_route),
+        FOREIGN KEY (journey_id) REFERENCES journey(id_trajet)
+    );
     """
 }

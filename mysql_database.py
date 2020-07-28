@@ -50,15 +50,19 @@ class connection:
         """
         self.cursor.executemany(INSERT_STATEMENT[table], rows)
 
+    def delete_table(self, table):
+        result = self.cursor.execute(DROP_TABLE.format(table))
+        print('Table ', table, ' deleted.')
+        return result
+
     def create_table(self, table):
         """ Permet de créer une table à partir du nom donné en paramètre
 
         Args:
             table (string): nom de la table
         """
-        self.cursor.execute(DROP_TABLE.format(table))
         self.cursor.execute(CREATE_TABLE[table])
-        print('Created database.')
+        print('Table ', table, ' created.')
 
     def get_data(self, table):
         self.cursor.execute(SELECT_STATEMENT[table])
@@ -68,16 +72,37 @@ class connection:
 if __name__ == "__main__":
     connect = connection()
 
-    connect.create_table(table.prefecture.value)
-    data = []
+    # DROP TABLES
+    # conetiennent des foreign keys
+    connect.delete_table(table.route_gare.value)
+    connect.delete_table(table.route_journey.value)
+    connect.delete_table(table.journey.value)
 
-    with open('sql/cities.csv', newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            data.append(
-                (row['region_admin_code'], row['numero_dpt'], row['nom_dpt'], row['prefecture'], row['nom_region'], row['longitude'], row['latitude'])
-            )
-    connect.insert_data(table.prefecture.value, data)
+    connect.delete_table(table.route.value)
+    connect.delete_table(table.gare.value)
+    connect.delete_table(table.voyage.value)
+
+    print('\n')
+
+    # CREATE TABLES
+    connect.create_table(table.voyage.value)
+    connect.create_table(table.journey.value)
+    connect.create_table(table.route.value)
+    connect.create_table(table.gare.value)
+    connect.create_table(table.route_gare.value)
+    connect.create_table(table.route_journey.value)
+
+    # # INSERT PREFECTURE
+    # connect.create_table(table.prefecture.value)
+    # data = []
+
+    # with open('sql/cities.csv', newline='', encoding='utf-8') as csvfile:
+    #     reader = csv.DictReader(csvfile)
+    #     for row in reader:
+    #         data.append(
+    #             (row['region_admin_code'], row['numero_dpt'], row['nom_dpt'], row['prefecture'], row['nom_region'], row['longitude'], row['latitude'])
+    #         )
+    # connect.insert_data(table.prefecture.value, data)
 
     # # READ
     # liste_prefecture = classe.prefecture.from_tuple(connect.get_data(table.prefecture.value))

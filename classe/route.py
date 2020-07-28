@@ -31,7 +31,7 @@ class route:
             self.arrivee.id_gare
         )]
 
-        connection.insert_data(table.route, data)
+        connection.insert_data(table.route.value, data)
 
         # Insertion des gares suivi de l'insertion de la relation route_gare
         self.depart.enregistrer(connection)
@@ -42,7 +42,7 @@ class route:
             (self.id, self.arrivee.id_gare),
         ]
 
-        connection.insert_data(table.route_gare, data_relation)
+        connection.insert_data(table.route_gare.value, data_relation)
 
     @classmethod
     def from_json(cls, json):

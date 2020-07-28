@@ -36,7 +36,7 @@ class journey:
             voyage_id
         )]
 
-        connection.insert_data(table.journey, data)
+        connection.insert_data(table.journey.value, data)
 
         # Insertion de route suivi de l'insertion de la relation route_journey
         data_relation = []
@@ -47,7 +47,7 @@ class journey:
                 une_route.id,
                 self.id
             ))
-        connection.insert_data(table.route_journey, data_relation)
+        connection.insert_data(table.route_journey.value, data_relation)
 
     @classmethod
     def from_json(cls, json):

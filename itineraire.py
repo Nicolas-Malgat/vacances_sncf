@@ -1,9 +1,8 @@
 from sncf_api import sncf_api
 from mysql_database import connection
 from sql_constant import table
-from classe.journey import journey
+from classe.voyage import voyage
 
-import classe
 from classe.prefecture import prefecture
 
 from enum import Enum
@@ -79,6 +78,12 @@ if __name__ == '__main__':
     connect = connection()
     itineraire = itineraire(connect)
     liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
+
+    voyage1 = voyage.from_list_journey(liste_journey)
+
     with open('liste_journey.txt', 'w', 'utf-8') as file:
-        file.write(pprint.pprint(liste_journey))
+        file.write(pprint.pprint(voyage1))
+
+    voyage1.enregistrer(connect)
+
     print('programme terminé !')

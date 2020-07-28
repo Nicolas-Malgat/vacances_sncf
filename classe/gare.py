@@ -20,7 +20,7 @@ class gare:
             self.latitude
         )]
 
-        connection.insert_data(table.gare, data)
+        connection.insert_data(table.gare.value, data)
 
     @classmethod
     def from_json(cls, json):

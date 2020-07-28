@@ -44,10 +44,11 @@ class voyage:
             self.arrivee.id_gare,
             self.departure_date_time,
             self.arrival_date_time,
+            self.duration,
             self.pollution
         )]
 
-        connection.insert_data(table.voyage, data)
+        connection.insert_data(table.voyage.value, data)
 
         for journey in self.liste_journey:
             journey.enregistrer(connection, self.id)
