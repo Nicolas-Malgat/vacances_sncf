@@ -1,7 +1,6 @@
 import requests
 import os
 from classe.gare import gare
-from classe.route import route
 from classe.journey import journey
 
 
@@ -25,7 +24,7 @@ class sncf_api:
     @classmethod
     def make_request(cls, link):
         try:
-            print(link)
+            # print(link)
             return requests.get(link, auth=(cls.__token_auth, ''))
         except Exception as e:
             print("Erreur lors de la requête avec le lien: " + link)
@@ -69,7 +68,14 @@ class sncf_api:
 
         response = sncf_api.make_request(path)
 
-        return journey.from_json(response.json())
+        try:
+            return journey.from_json(response.json())
+        except KeyError:
+            print("\nErreur, aucun trajet pour la recherche\n", path)
+        except AttributeError:
+            print('\nErreur, la requête suivante n\'a rien renvoyé', path)
+        finally:
+            return None
 
 
 if __name__ == "__main__":

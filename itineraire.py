@@ -1,11 +1,13 @@
-from sncf_api import plus_court_chemin, get_journeys, plus_vert_chemin, get_gares
+from sncf_api import sncf_api
 from mysql_database import connection
 from sql_constant import PREFECTURE
+from classe.journey import journey
 
 import classe
 from classe.prefecture import prefecture
 
 from enum import Enum
+import pprint
 
 
 class type_voyage(Enum):
@@ -20,13 +22,14 @@ class itineraire:
         self.liste_prefecture = prefecture.from_tuple(self.conn.get_data(PREFECTURE))
 
         self.liste_voyage = []
-        self.liste_des_gares = get_gares()
+        self.liste_des_gares = sncf_api.get_gares()
 
     def calcul_voyage(self, type_itineraire, prefecture_depart_id, date_de_depart):
         liste_prefecture = self.liste_prefecture
 
         # Initialisation des variables
-        prefecture_depart = classe.prefecture.find_by_id(prefecture_depart_id)
+        prefecture_depart = prefecture.find_by_id(liste_prefecture, prefecture_depart_id)
+        liste_prefecture.remove(prefecture_depart)
         liste_journey_finale = []
 
         while liste_prefecture:
@@ -36,9 +39,21 @@ class itineraire:
 
             # recuperation des journeys
             for pref in liste_prefecture:
-                liste_journey_temp.append(
-                    get_journeys(prefecture_depart, pref, date_de_depart)
+                journeys = sncf_api.get_journeys(prefecture_depart.region_admin, pref.region_admin, date_de_depart)
+
+                if journeys: 
+                    for journey in journeys:
+                        print("|", end='')
+                        liste_journey_temp.append(journey)
+
+            # Au cas où aucun trajet ne permet de compléter les visites des préfectures
+            if not liste_journey_temp:
+                prefectures = map(lambda x: x.nom, liste_prefecture)
+                print(
+                    'Auncune journey pour poursuivre l\'itinéraire, préfectures non visitées:\n',
+                    '\n'.join(prefectures)
                 )
+                return liste_journey_finale
 
             # attribution des gares pour chaque journey et route
             for journey in liste_journey_temp:
@@ -46,13 +61,15 @@ class itineraire:
 
             # CHOIX DU TYPE D'ITINERAIRE
             if type_itineraire == type_voyage.ecologique:
-                min_journey = plus_vert_chemin(liste_journey_temp)
+                min_journey = journey.plus_vert_chemin(liste_journey_temp)
             if type_itineraire == type_voyage.court:
-                min_journey = plus_court_chemin(liste_journey_temp)
+                min_journey = journey.plus_court_chemin(liste_journey_temp)
 
             # preparation des varaible avant la prochaine iteration
+            print('\nNouvelle iteration:\n')
             liste_journey_finale.append(min_journey)
             prefecture_depart = prefecture.find_by_gare(liste_prefecture, min_journey.arrivee)
+            liste_prefecture.remove(prefecture_depart)
             date_de_depart = min_journey.arrival_date_time
 
         return liste_journey_finale
@@ -61,4 +78,7 @@ class itineraire:
 if __name__ == '__main__':
     connect = connection()
     itineraire = itineraire(connect)
-    liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:63113", '20200727T080000')
+    liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
+    with open('liste_journey.txt', 'w', 'utf-8') as file:
+        file.write(pprint.pprint(liste_journey))
+    print('programme terminé !')
