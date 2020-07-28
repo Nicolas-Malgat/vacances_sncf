@@ -1,0 +1,2 @@
+1062 (23000): Duplicate entry 'section_1_0-stop_area:OCE:SA:87286005' for key 'PRIMARY'
+Erreur, c'est pas normal

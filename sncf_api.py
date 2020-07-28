@@ -18,7 +18,7 @@ class sncf_api:
                     return link['href']
             return False
         except Exception:
-            os.error('get_next_page a levé une exception !\n' + response.json()['links'])
+            print('get_next_page a levé une exception !\n', response.json())
             return False
 
     @classmethod
@@ -41,6 +41,9 @@ class sncf_api:
             response = cls.make_request(next_page)
             list_response.append(response)
             next_page = cls.get_next_page(response)
+
+        if list_response[0].status_code != 200:
+            raise Exception("Aucune gare n'a pu être collectée, erreur fatale\n", list_response)
 
         list_gare_total = []
         # tous les objets

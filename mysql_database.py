@@ -1,10 +1,11 @@
 import mysql.connector
+from mysql.connector.errors import IntegrityError
 
 import os
 import csv
 from sql_constant import DROP_TABLE, INSERT_STATEMENT, CREATE_TABLE, table, SELECT_STATEMENT
 from dotenv import load_dotenv
-import classe
+from sql_constant import table
 
 load_dotenv(verbose=True)
 
@@ -34,7 +35,7 @@ class connection:
     def commit(self):
         self.cnx.commit()
 
-    def insert_data(self, table, rows):
+    def insert_data(self, nom_table, rows):
         """ Insère des données dans la table définie en paramètre
 
         format de rows:
@@ -45,11 +46,18 @@ class connection:
         ]
 
         Args:
-            table (string): constant de table
+            nom_table (string): membre de l'enum table dans sql_constant
             rows (list of tuple): list contenant des tuples
         """
+        try:
+            self.cursor.executemany(INSERT_STATEMENT[nom_table], rows)
+        except IntegrityError as e:
 
-        self.cursor.executemany(INSERT_STATEMENT[table], rows)
+            # contrainte d'intégrités acceptables de violer
+            if nom_table != table.gare.value and nom_table != table.route.value and nom_table != table.route_gare.value:
+                raise Exception("Une contrainte d'intégrité non prévu a été levée", e)
+            else:
+                print("Contrainte d'intégrité non fatale dans ", nom_table, '\n', rows)
 
     def delete_table(self, table):
         result = self.cursor.execute(DROP_TABLE.format(table))
