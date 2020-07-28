@@ -2,7 +2,7 @@ import mysql.connector
 
 import os
 import csv
-from sql_constant import DROP_TABLE, INSERT_STATEMENT, CREATE_TABLE, PREFECTURE, SELECT_STATEMENT
+from sql_constant import DROP_TABLE, INSERT_STATEMENT, CREATE_TABLE, table, SELECT_STATEMENT
 from dotenv import load_dotenv
 import classe
 
@@ -68,7 +68,7 @@ class connection:
 if __name__ == "__main__":
     connect = connection()
 
-    connect.create_table(PREFECTURE)
+    connect.create_table(table.prefecture.value)
     data = []
 
     with open('sql/cities.csv', newline='', encoding='utf-8') as csvfile:
@@ -77,10 +77,10 @@ if __name__ == "__main__":
             data.append(
                 (row['region_admin_code'], row['numero_dpt'], row['nom_dpt'], row['prefecture'], row['nom_region'], row['longitude'], row['latitude'])
             )
-    connect.insert_data(PREFECTURE, data)
+    connect.insert_data(table.prefecture.value, data)
 
     # # READ
-    # liste_prefecture = classe.prefecture.from_tuple(connect.get_data(PREFECTURE))
+    # liste_prefecture = classe.prefecture.from_tuple(connect.get_data(table.prefecture.value))
     # for prefecture in liste_prefecture:
     #     print(prefecture.nom, '\t\t', prefecture.departement_code, '\t', prefecture.departement_nom)
     connect.commit()

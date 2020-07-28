@@ -1,6 +1,6 @@
 import csv
 from mysql_database_connect import Connection
-from sql_constant import PREFECTURE
+from sql_constant import table
 
 if __name__ == "__main__":
     data = []
@@ -13,4 +13,4 @@ if __name__ == "__main__":
             )
 
     connect = Connection()
-    connect.insert_data(PREFECTURE, data)
+    connect.insert_data(table.prefecture.value, data)

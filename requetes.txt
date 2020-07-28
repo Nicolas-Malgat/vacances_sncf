@@ -1,3 +1,0 @@
-https://api.navitia.io/v1/coverage/sncf/stop_areas/ #récupérer codes admin
-https://api.sncf.com/v1/coverage/sncf/journeys?from={}to={} #préparer le trajet
-

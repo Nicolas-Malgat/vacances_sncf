@@ -1,6 +1,6 @@
 from sncf_api import sncf_api
 from mysql_database import connection
-from sql_constant import PREFECTURE
+from sql_constant import table
 from classe.journey import journey
 
 import classe
@@ -19,7 +19,7 @@ class itineraire:
 
     def __init__(self, connection):
         self.conn = connection
-        self.liste_prefecture = prefecture.from_tuple(self.conn.get_data(PREFECTURE))
+        self.liste_prefecture = prefecture.from_tuple(self.conn.get_data(table.prefecture.value))
 
         self.liste_voyage = []
         self.liste_des_gares = sncf_api.get_gares()
