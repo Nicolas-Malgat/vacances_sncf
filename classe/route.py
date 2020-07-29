@@ -50,15 +50,23 @@ class route:
         list_route = []
 
         for route in json:
-            # Vérification de l'existence du stop_point de départ
-            try:
-                route['from']['stop_point']
-                route['to']['stop_point']
-            except KeyError:
+            # Vérification 
+            
+            if route['type'] != 'public_transport':
+                if route['type'] != 'walking' and route['type'] != 'transfer' and route['type'] != 'crow_fly' and route['type'] != 'waiting':
+                    print("type de transport disruptif: ", route['type'])
                 continue
 
+            id = None
+            for link in route['links']:
+                if link['type'] == 'route':
+                    id = link['id']
+                    break
+            if not id:
+                raise Exception('Aucun id trouvé pour la route ', route)
+
             list_route.append(cls(
-                route['id'],
+                id,
                 route['from']['stop_point']['stop_area']['id'],
                 route['to']['stop_point']['stop_area']['id'],
                 route['duration'],

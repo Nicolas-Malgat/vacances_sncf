@@ -27,9 +27,9 @@ INSERT_STATEMENT = {
     'route': "INSERT INTO route (id_route, gare_depart, gare_arrivee) VALUES (%s, %s, %s)",
     'voyage': "INSERT INTO voyage (id_voyage, date_time_requete, gare_depart_id, gare_arrivee_id, date_time_depart, date_time_arrivee, duree, pollution) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
     'gare': "INSERT INTO gare (id_gare, region_admin, gare_nom, longitude, latitude) VALUES (%s, %s, %s, %s, %s)",
-    'journey': "INSERT INTO journey (id_trajet, trajet_duree, heure_depart, heure_arrivee, heure_requete, gare_depart_id, gare_arrivee_id, pollution, voyage_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+    'journey': "INSERT INTO journey (id_trajet, trajet_duree, heure_depart, heure_arrivee, heure_requete, gare_depart_id, gare_arrivee_id, pollution, voyage_id, ordre) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
     'route_gare': "INSERT INTO route_gare (route_id, gare_id) VALUES (%s, %s)",
-    'route_journey': "INSERT INTO route_journey (route_id, journey_id) VALUES (%s, %s)"
+    'route_journey': "INSERT INTO route_journey (route_id, journey_id, ordre) VALUES (%s, %s)"
 }
 
 CREATE_TABLE = {
@@ -84,6 +84,8 @@ CREATE_TABLE = {
         gare_arrivee_id VARCHAR(25) NOT NULL,
         pollution   DOUBLE(8, 3) NOT NULL,
         voyage_id   VARCHAR(50) NOT NULL,
+        ordre INT NOT NULL,
+
         FOREIGN KEY (voyage_id) REFERENCES voyage(id_voyage)
     );
     """,
@@ -100,6 +102,8 @@ CREATE_TABLE = {
     'route_journey': """CREATE TABLE route_journey (
         route_id    VARCHAR(50)     NOT NULL,
         journey_id     VARCHAR(50)  NOT NULL,
+        ordre INT NOT NULL,
+
         PRIMARY KEY (route_id, journey_id),
         FOREIGN KEY (route_id) REFERENCES route(id_route),
         FOREIGN KEY (journey_id) REFERENCES journey(id_trajet)

@@ -74,7 +74,7 @@ class itineraire:
             date_de_depart = min_journey.arrival_date_time
 
             # fin prematurée
-            if i == 5:
+            if i == 2:
                 return liste_journey_finale
             i += 1
 

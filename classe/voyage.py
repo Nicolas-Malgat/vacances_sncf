@@ -51,7 +51,9 @@ class voyage:
 
         connection.insert_data(table.voyage.value, data)
 
+        ordre = 1
         for journey in self.liste_journey:
-            journey.enregistrer(connection, self.id)
+            journey.enregistrer(connection, self.id, ordre)
+            ordre += 1
 
         connection.commit()

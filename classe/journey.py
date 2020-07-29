@@ -24,7 +24,7 @@ class journey:
         self.depart = liste[0].depart
         self.arrivee = liste[len(liste) - 1].arrivee
 
-    def enregistrer(self, connection, voyage_id):
+    def enregistrer(self, connection, voyage_id, ordre1):
 
         data = []
         data.append((
@@ -36,20 +36,25 @@ class journey:
             self.depart.id_gare,
             self.arrivee.id_gare,
             self.pollution,
-            voyage_id
+            voyage_id,
+            ordre1
         ))
 
         connection.insert_data(table.journey.value, data)
 
         # Insertion de route suivi de l'insertion de la relation route_journey
         data_relation = []
+        ordre2 = 1
         for une_route in self.liste_route:
             une_route.enregistrer(connection)
 
             data_relation.append((
                 une_route.id,
-                self.id
+                self.id,
+                ordre2
             ))
+            ordre2 += 1
+
         connection.insert_data(table.route_journey.value, data_relation)
 
     @classmethod
