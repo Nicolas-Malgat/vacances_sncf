@@ -16,7 +16,7 @@ DROP_TABLE = "DROP TABLE IF EXISTS `{}`;"
 SELECT_STATEMENT = {
     'prefecture': "SELECT * FROM prefecture",
     'route': "SELECT * FROM route",
-    'voyage': "SELECT * FROM voyage",
+    'voyage': "SELECT * FROM voyage ORDER BY voyage.duree LIMIT 1",
     'journey': "SELECT * FROM journey",
     'route_gare': "SELECT * FROM route_gare",
     'route_journey': "SELECT * FROM route_journey"
@@ -24,9 +24,9 @@ SELECT_STATEMENT = {
 
 LOAD_STATEMENT = {
     'journey': "SELECT * FROM journey WHERE journey.voyage_id = {} ORDER BY ordre",
-    'route_journey': "SELECT * FROM route_journey WHERE route_journey.journey_id = {} ORDER BY ordre",
-    'route': "SELECT * FROM route WHERE route.id_route = {}",
-    'gare': "SELECT * FROM gare WHERE gare.id_gare = {}"
+    # 'route_journey': "SELECT * FROM route_journey WHERE route_journey.journey_id = {} ORDER BY ordre",
+    'route': "SELECT  route.id_route, route.gare_depart, route.gare_arrivee FROM route, route_journey WHERE route.id_route = route_journey.route_id and route_journey.journey_id = {} order by route_journey.ordre",
+    'voyage': "SELECT * FROM voyage WHERE id_voyage = {}"
 }
 
 INSERT_STATEMENT = {

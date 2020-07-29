@@ -18,7 +18,7 @@ class itineraire:
 
     def __init__(self, connection):
         self.conn = connection
-        self.liste_prefecture = prefecture.load()
+        self.liste_prefecture = prefecture.load(self.conn)
         self.liste_prefecture = prefecture.from_tuple(self.conn.get_data(table.prefecture.value))
 
         self.liste_voyage = []
@@ -81,17 +81,20 @@ class itineraire:
 
         return liste_journey_finale
 
+    def load_voyage(self):
+        voyage1 = voyage.load(connect, None, self.liste_des_gares)
+        return voyage1
 
 if __name__ == '__main__':
     connect = connection()
     itineraire = itineraire(connect)
-    liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
 
-    voyage1 = voyage.from_list_journey(liste_journey)
+    # construction d'un voyage
+    # liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
+    # voyage1 = voyage.from_list_journey(liste_journey)
+    # voyage1.enregistrer(connect)
 
-    with open('liste_journey.txt', 'w', encoding='utf-8') as file:
-        file.write(str(pprint.pprint(voyage1)))
-
-    voyage1.enregistrer(connect)
+    # test chargement d'un voyage
+    voyage = itineraire.load_voyage()
 
     print('programme terminé !')

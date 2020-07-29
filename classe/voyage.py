@@ -1,4 +1,6 @@
 import uuid
+from classe.gare import gare
+from classe.journey import journey
 from sql_constant import table
 
 
@@ -24,7 +26,7 @@ class voyage:
             pollution += journey.pollution
 
         return cls(
-            uuid.uuid4().int
+            str(uuid.uuid4().int),
             liste_journey,
             liste_journey[0].requested_date_time,
             liste_journey[0].depart,
@@ -58,10 +60,33 @@ class voyage:
 
         connection.commit()
 
-    @staticmethod
-    def load(connection, id_voyage=None):
+    @classmethod
+    def load(cls, connection, id_voyage, liste_gare):
 
         if not id_voyage:
-            # traitement pour automatiquement récupérer le voyage le plus court
+            id_voyage = connection.get_data(table.voyage.value)[0][0]
 
-        connection.load_data(table.voyage.value, id_voyage)
+        tuple_voyage = connection.load_data(table.voyage.value, id_voyage)
+
+        liste_journey = journey.load(connection, id_voyage, liste_gare)
+
+        return cls.from_tuple(tuple_voyage, liste_gare, liste_journey)
+
+    @classmethod
+    def from_tuple(cls, tuple, liste_gare, liste_journey):
+        liste_voyage = []
+
+        for element in tuple:
+            liste_voyage.append(cls(
+                element[0],
+                liste_journey,
+                element[1],
+                gare.find_by_id(liste_gare, element[2]),
+                element[4],
+                gare.find_by_id(liste_gare, element[3]),
+                element[5],
+                element[6],
+                element[7]
+            ))
+
+        return liste_voyage

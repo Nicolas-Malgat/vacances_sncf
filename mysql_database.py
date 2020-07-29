@@ -79,7 +79,7 @@ class connection:
 
     def load_data(self, table, id):
         self.cursor.execute(LOAD_STATEMENT[table].format(id))
-        return self.fetch_all()
+        return self.cursor.fetchall()
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 from sql_constant import table
+from classe.gare import gare
 
 
 class route:
@@ -44,6 +45,33 @@ class route:
         ]
 
         connection.insert_data(table.route_gare.value, data_relation)
+
+    @classmethod
+    def load(cls, connection, id_journey, liste_gare):
+
+        tuple_route = connection.load_data(table.route.value, id_journey)
+
+        liste_route = cls.from_tuple(tuple_route, liste_gare)
+
+        for route in liste_route:
+            route.set_gare(liste_gare)
+
+        return liste_route
+
+    @classmethod
+    def from_tuple(cls, tuple, liste_gare):
+        liste_route = []
+
+        for element in tuple:
+            liste_route.append(cls(
+                element[0],
+                element[1],
+                element[2],
+                None,
+                None
+            ))
+
+        return liste_route
 
     @classmethod
     def from_json(cls, json):

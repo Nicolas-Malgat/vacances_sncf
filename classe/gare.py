@@ -37,3 +37,11 @@ class gare:
                     gare['coord']['lat']
                 ))
         return list_gare
+
+    @staticmethod
+    def find_by_id(list_gare, id):
+        for gare in list_gare:
+            if gare.id_gare == id:
+                return gare
+        raise Exception("l'id ", id, " n'a pas été trouvé lors de la recherche gare.find_by_id")
+

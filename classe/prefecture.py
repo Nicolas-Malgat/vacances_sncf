@@ -1,3 +1,6 @@
+from sql_constant import table
+
+
 class prefecture:
 
     def __init__(self, region_admin, departement_code, departement_nom, nom, region_nom, longitude, latitude):
