@@ -56,6 +56,15 @@ class journey:
 
         connection.insert_data(table.route_journey.value, data_relation)
 
+    def get_coordonnees(self, dictionnaire):
+        
+        for route in self.liste_route:
+            route.get_coordonnees(dictionnaire)
+            
+        dictionnaire.append(
+            {'lat': self.arrivee.latitude, 'lng': self.arrivee.longitude}
+        )
+
     @classmethod
     def from_json(cls, json):
         list_journey = []

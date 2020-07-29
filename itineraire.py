@@ -95,6 +95,7 @@ if __name__ == '__main__':
     # voyage1.enregistrer(connect)
 
     # test chargement d'un voyage
-    voyage = itineraire.load_voyage()
+    voyage = itineraire.load_voyage()[0]
+    pprint.pprint(voyage.get_coordonnees())
 
     print('programme terminé !')

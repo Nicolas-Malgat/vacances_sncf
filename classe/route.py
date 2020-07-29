@@ -46,6 +46,12 @@ class route:
 
         connection.insert_data(table.route_gare.value, data_relation)
 
+    def get_coordonnees(self, dictionnaire):
+        
+        dictionnaire.append(
+            {'lat': self.depart.latitude, 'lng': self.depart.longitude}
+        )
+
     @classmethod
     def load(cls, connection, id_journey, liste_gare):
 
