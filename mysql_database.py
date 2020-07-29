@@ -3,7 +3,7 @@ from mysql.connector.errors import IntegrityError
 
 import os
 import csv
-from sql_constant import DROP_TABLE, INSERT_STATEMENT, CREATE_TABLE, table, SELECT_STATEMENT
+from sql_constant import DROP_TABLE, INSERT_STATEMENT, CREATE_TABLE, table, SELECT_STATEMENT, LOAD_STATEMENT
 from dotenv import load_dotenv
 from sql_constant import table
 
@@ -56,8 +56,8 @@ class connection:
             # contrainte d'intégrités acceptables de violer
             if nom_table != table.gare.value and nom_table != table.route.value and nom_table != table.route_gare.value:
                 raise Exception("Une contrainte d'intégrité non prévu a été levée", e)
-            else:
-                print("Contrainte d'intégrité non fatale dans ", nom_table, '\n', rows)
+            # else:
+                # print("Contrainte d'intégrité non fatale dans ", nom_table, '\n', rows)
 
     def delete_table(self, table):
         result = self.cursor.execute(DROP_TABLE.format(table))
@@ -76,6 +76,10 @@ class connection:
     def get_data(self, table):
         self.cursor.execute(SELECT_STATEMENT[table])
         return self.cursor.fetchall()
+
+    def load_data(self, table, id):
+        self.cursor.execute(LOAD_STATEMENT[table].format(id))
+        return self.fetch_all()
 
 
 if __name__ == "__main__":

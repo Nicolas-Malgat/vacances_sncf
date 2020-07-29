@@ -4,9 +4,8 @@ from sql_constant import table
 
 class voyage:
 
-    def __init__(self, liste_journey, requested_date_time, depart_gare, departure_date_time, arrivee_gare, arrival_date_time, duration, pollution):
-        id = uuid.uuid4()
-        self.id = str(id.int)
+    def __init__(self, id, liste_journey, requested_date_time, depart_gare, departure_date_time, arrivee_gare, arrival_date_time, duration, pollution):
+        self.id = id
         self.liste_journey = liste_journey
         self.requested_date_time = requested_date_time
         self.depart = depart_gare
@@ -25,6 +24,7 @@ class voyage:
             pollution += journey.pollution
 
         return cls(
+            uuid.uuid4().int
             liste_journey,
             liste_journey[0].requested_date_time,
             liste_journey[0].depart,
@@ -57,3 +57,11 @@ class voyage:
             ordre += 1
 
         connection.commit()
+
+    @staticmethod
+    def load(connection, id_voyage=None):
+
+        if not id_voyage:
+            # traitement pour automatiquement récupérer le voyage le plus court
+
+        connection.load_data(table.voyage.value, id_voyage)

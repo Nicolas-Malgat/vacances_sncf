@@ -18,6 +18,7 @@ class itineraire:
 
     def __init__(self, connection):
         self.conn = connection
+        self.liste_prefecture = prefecture.load()
         self.liste_prefecture = prefecture.from_tuple(self.conn.get_data(table.prefecture.value))
 
         self.liste_voyage = []

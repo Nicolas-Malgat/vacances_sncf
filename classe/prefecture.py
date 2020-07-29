@@ -26,6 +26,10 @@ class prefecture:
 
         return liste_prefecture
 
+    @classmethod
+    def load(cls, connection):
+        return cls.from_tuple(connection.get_data(table.prefecture.value))
+
     @staticmethod
     def find_by_gare(liste_prefecture, gare_arrivee):
         for prefecture in liste_prefecture:

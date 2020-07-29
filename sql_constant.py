@@ -22,6 +22,13 @@ SELECT_STATEMENT = {
     'route_journey': "SELECT * FROM route_journey"
 }
 
+LOAD_STATEMENT = {
+    'journey': "SELECT * FROM journey WHERE journey.voyage_id = {} ORDER BY ordre",
+    'route_journey': "SELECT * FROM route_journey WHERE route_journey.journey_id = {} ORDER BY ordre",
+    'route': "SELECT * FROM route WHERE route.id_route = {}",
+    'gare': "SELECT * FROM gare WHERE gare.id_gare = {}"
+}
+
 INSERT_STATEMENT = {
     'prefecture': "INSERT INTO prefecture (region_admin_code, departement_code, departement_name, prefecture_name, region_name, longitude, latitude) VALUES (%s, %s, %s, %s, %s, %s, %s)",
     'route': "INSERT INTO route (id_route, gare_depart, gare_arrivee) VALUES (%s, %s, %s)",
@@ -29,7 +36,7 @@ INSERT_STATEMENT = {
     'gare': "INSERT INTO gare (id_gare, region_admin, gare_nom, longitude, latitude) VALUES (%s, %s, %s, %s, %s)",
     'journey': "INSERT INTO journey (id_trajet, trajet_duree, heure_depart, heure_arrivee, heure_requete, gare_depart_id, gare_arrivee_id, pollution, voyage_id, ordre) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
     'route_gare': "INSERT INTO route_gare (route_id, gare_id) VALUES (%s, %s)",
-    'route_journey': "INSERT INTO route_journey (route_id, journey_id, ordre) VALUES (%s, %s)"
+    'route_journey': "INSERT INTO route_journey (route_id, journey_id, ordre) VALUES (%s, %s, %s)"
 }
 
 CREATE_TABLE = {
