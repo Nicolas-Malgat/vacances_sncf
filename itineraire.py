@@ -6,7 +6,6 @@ from classe.voyage import voyage
 from classe.prefecture import prefecture
 
 from enum import Enum
-import pprint
 
 
 class type_voyage(Enum):
@@ -25,7 +24,6 @@ class itineraire:
         self.liste_des_gares = sncf_api.get_gares()
 
     def calcul_voyage(self, type_itineraire, prefecture_depart_id, date_de_depart):
-        i = 0
 
         liste_prefecture = self.liste_prefecture
 
@@ -43,7 +41,7 @@ class itineraire:
             for pref in liste_prefecture:
                 journeys = sncf_api.get_journeys(prefecture_depart.region_admin, pref.region_admin, date_de_depart)
 
-                if journeys: 
+                if journeys:
                     for journey in journeys:
                         print("|", end='')
                         liste_journey_temp.append(journey)
@@ -74,28 +72,20 @@ class itineraire:
             liste_prefecture.remove(prefecture_depart)
             date_de_depart = min_journey.arrival_date_time
 
-            # fin prematurée
-            if i == 2:
-                return liste_journey_finale
-            i += 1
-
         return liste_journey_finale
 
     def load_voyage(self):
         voyage1 = voyage.load(self.conn, None, self.liste_des_gares)[0]
         return voyage1
 
+
 if __name__ == '__main__':
     connect = connection()
     itineraire = itineraire(connect)
 
     # construction d'un voyage
-    # liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
-    # voyage1 = voyage.from_list_journey(liste_journey)
-    # voyage1.enregistrer(connect)
-
-    # test chargement d'un voyage
-    voyage = itineraire.load_voyage()[0]
-    pprint.pprint(voyage.get_coordonnees())
+    liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
+    voyage1 = voyage.from_list_journey(liste_journey)
+    voyage1.enregistrer(connect)
 
     print('programme terminé !')

@@ -4,7 +4,7 @@
     function initMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
+            zoom: 6,
             center: { lat: 46.617578, lng: 2.506741 },
             mapTypeId: 'terrain'
         });
@@ -26,7 +26,7 @@
             var flightPath = new google.maps.Polyline({
                 path: flightPlanCoordinates,
                 geodesic: true,
-                strokeColor: '#FF0000',
+                strokeColor: '#ef982e',
                 strokeOpacity: 1.0,
                 strokeWeight: 2
             });

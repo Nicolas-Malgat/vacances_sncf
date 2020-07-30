@@ -52,21 +52,21 @@ CREATE_TABLE = {
     """,
 
     'route': """CREATE TABLE route (
-        id_route    VARCHAR(50)    PRIMARY KEY,
+        id_route    VARCHAR(255)    PRIMARY KEY,
         gare_depart VARCHAR (25)     NOT NULL,
         gare_arrivee VARCHAR (25)   NOT NULL
     );
     """,
 
     'voyage': """CREATE TABLE voyage (
-        id_voyage    VARCHAR(50)    PRIMARY KEY,
+        id_voyage    VARCHAR(255)    PRIMARY KEY,
         date_time_requete   VARCHAR (15) NOT NULL,
         gare_depart_id  VARCHAR(25)     NOT NULL,
         gare_arrivee_id VARCHAR(25)     NOT NULL,
         date_time_depart    VARCHAR(15) NOT NULL,
         date_time_arrivee   VARCHAR(15) NOT NULL,
         duree   INT(6)  NOT NULL,
-        pollution   DOUBLE(8, 3) NOT NULL
+        pollution   DOUBLE NOT NULL
     );
     """,
 
@@ -90,7 +90,7 @@ CREATE_TABLE = {
         gare_depart_id  VARCHAR(25) NOT NULL,
         gare_arrivee_id VARCHAR(25) NOT NULL,
         pollution   DOUBLE(8, 3) NOT NULL,
-        voyage_id   VARCHAR(50) NOT NULL,
+        voyage_id   VARCHAR(255) NOT NULL,
         ordre INT NOT NULL,
 
         FOREIGN KEY (voyage_id) REFERENCES voyage(id_voyage)
@@ -98,7 +98,7 @@ CREATE_TABLE = {
     """,
 
     'route_gare': """CREATE TABLE route_gare (
-        route_id    VARCHAR(50)     NOT NULL,
+        route_id    VARCHAR(255)     NOT NULL,
         gare_id     VARCHAR(25)  NOT NULL,
         PRIMARY KEY (route_id, gare_id),
         FOREIGN KEY (route_id) REFERENCES route(id_route),
@@ -107,7 +107,7 @@ CREATE_TABLE = {
     """,
 
     'route_journey': """CREATE TABLE route_journey (
-        route_id    VARCHAR(50)     NOT NULL,
+        route_id    VARCHAR(255)     NOT NULL,
         journey_id     VARCHAR(50)  NOT NULL,
         ordre INT NOT NULL,
 
