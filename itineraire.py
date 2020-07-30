@@ -82,7 +82,7 @@ class itineraire:
         return liste_journey_finale
 
     def load_voyage(self):
-        voyage1 = voyage.load(connect, None, self.liste_des_gares)
+        voyage1 = voyage.load(self.conn, None, self.liste_des_gares)[0]
         return voyage1
 
 if __name__ == '__main__':

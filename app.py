@@ -17,7 +17,8 @@ def get_coordonnees():
         itineraire1 = itineraire(connect)
         voyage = itineraire1.load_voyage()
         return voyage.get_coordonnees()
-    except Exception:
+    except Exception as e:
+        print(e)
         return 'Echec lors de la récupérations des coordonnées'
 
 # RESSOURCES
