@@ -49,7 +49,7 @@ class route:
     def get_coordonnees(self, dictionnaire):
         
         dictionnaire.append(
-            {'lat': self.depart.latitude, 'lng': self.depart.longitude}
+            {'lat': float(self.depart.latitude), 'lng': float(self.depart.longitude)}
         )
 
     @classmethod

@@ -3,15 +3,9 @@
 
 <head>
     <title>Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0SWKYVURs1-U5bvntoa5cKFqPxL2V2sQ&libraries=drawing"></script>
-        <!-- 
+         
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=drawing&v=weekly"></script>-->
 
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing"></script>
--->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script src="/javascript/draw_originel.js"></script>
-    <script src="/javascript/top_bar.js"></script>
 </head>
 
 <body>
@@ -37,6 +31,13 @@
             padding: 0;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="/javascript/draw2.js"></script>
+    <script src="/javascript/top_bar.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0SWKYVURs1-U5bvntoa5cKFqPxL2V2sQ&callback=initMap&libraries=drawing&v=weekly"></script>
+
 </body>
 
 </html>

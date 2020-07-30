@@ -57,12 +57,12 @@ class journey:
         connection.insert_data(table.route_journey.value, data_relation)
 
     def get_coordonnees(self, dictionnaire):
-        
-        for route in self.liste_route:
-            route.get_coordonnees(dictionnaire)
-            
+
+        for une_route in self.liste_route:
+            une_route.get_coordonnees(dictionnaire)
+
         dictionnaire.append(
-            {'lat': self.arrivee.latitude, 'lng': self.arrivee.longitude}
+            {'lat': float(self.arrivee.latitude), 'lng': float(self.arrivee.longitude)}
         )
 
     @classmethod

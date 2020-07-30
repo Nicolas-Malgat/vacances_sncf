@@ -1,6 +1,8 @@
 from bottle import route, run, static_file, template
 from mysql_database import connection
 from itineraire import itineraire
+from bottle import response
+from json import dumps
 
 
 @route('/')
@@ -16,7 +18,8 @@ def get_coordonnees():
         connect = connection()
         itineraire1 = itineraire(connect)
         voyage = itineraire1.load_voyage()
-        return voyage.get_coordonnees()
+        response.content_type = 'application/json'
+        return dumps(voyage.get_coordonnees())
     except Exception as e:
         print(e)
         return 'Echec lors de la récupérations des coordonnées'

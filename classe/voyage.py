@@ -2,7 +2,6 @@ import uuid
 from classe.gare import gare
 from classe.journey import journey
 from sql_constant import table
-import json
 
 
 class voyage:
@@ -67,7 +66,7 @@ class voyage:
         for journey in self.liste_journey:
             journey.get_coordonnees(dict_coord)
 
-        return json.dumps(dict_coord)
+        return dict_coord
 
 
     @classmethod

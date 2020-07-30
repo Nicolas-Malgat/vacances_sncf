@@ -5,7 +5,7 @@ from classe.journey import journey
 
 
 class sncf_api:
-    __token_auth = os.getenv("TOKEN_AUTH2")
+    __token_auth = os.getenv("TOKEN_AUTH")
     __path = r"https://api.sncf.com/v1/coverage/sncf"
 
     # STATIC
