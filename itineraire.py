@@ -85,8 +85,9 @@ if __name__ == '__main__':
     itineraire = itineraire(connect)
 
     # construction d'un voyage
-    liste_journey = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
-    voyage1 = voyage.from_list_journey(liste_journey)
+    liste_journey1 = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
+    print("Enregistrement ...")
+    voyage1 = voyage.from_list_journey(liste_journey1)
     voyage1.enregistrer(connect)
 
     print("nombre de requêtes totales: ", sncf_api.request_count)

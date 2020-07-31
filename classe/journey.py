@@ -87,11 +87,12 @@ class journey:
     @classmethod
     def load(cls, connection, id_voyage, liste_gare):
 
-        tuple_journey = connection.load_data(table.journey.value, id_voyage)
+        list_tuple_journey = connection.load_data(table.journey.value, id_voyage)
 
-        liste_route = route.load(connection, tuple_journey[0][0], liste_gare)
-
-        liste_journey = cls.from_tuple(tuple_journey, liste_route)
+        liste_journey = []
+        for tuple_journey in list_tuple_journey:
+            liste_route = route.load(connection, tuple_journey[0], liste_gare)
+            liste_journey.append(cls.from_tuple(tuple_journey, liste_route))
 
         for journey in liste_journey:
             journey.set_gare(liste_gare)
@@ -99,23 +100,17 @@ class journey:
         return liste_journey
 
     @classmethod
-    def from_tuple(cls, tuple, liste_route):
-        liste_journey = []
+    def from_tuple(cls, element, liste_route):
 
-        for element in tuple:
-            liste_journey.append(cls(
-                element[0],
-                element[2],
-                element[3],
-                element[4],
-                element[7],
-                element[1],
-                liste_route
-            ))
-
-        return liste_journey
-
-
+        return (cls(
+            element[0],
+            element[2],
+            element[3],
+            element[4],
+            element[7],
+            element[1],
+            liste_route
+        ))
 
     @staticmethod
     def plus_vert_chemin(list_journey):

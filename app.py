@@ -19,7 +19,12 @@ def get_coordonnees():
         itineraire1 = itineraire(connect)
         voyage = itineraire1.load_voyage()
         response.content_type = 'application/json'
-        return dumps(voyage.get_coordonnees())
+        ma_reponse = {
+            "duree": voyage.duration,
+            "pollution": voyage.pollution,
+            "coord": voyage.get_coordonnees()
+        }
+        return dumps(ma_reponse)
     except Exception as e:
         print(e)
         return 'Echec lors de la récupérations des coordonnées'

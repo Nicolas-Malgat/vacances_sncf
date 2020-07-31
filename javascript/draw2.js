@@ -21,7 +21,10 @@
 
             console.log(response);
 
-            flightPlanCoordinates = response;
+            $('#duree').append("<p>" + response.duree + " secondes</p>");
+            $('#pollution').append("<p>" + response.pollution + "gEc</p>");
+
+            flightPlanCoordinates = response.coord;
 
             var flightPath = new google.maps.Polyline({
                 path: flightPlanCoordinates,
