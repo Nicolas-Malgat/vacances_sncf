@@ -50,7 +50,8 @@ class itineraire:
             if not liste_journey_temp:
                 prefectures = map(lambda x: x.nom, liste_prefecture)
                 print(
-                    'Auncune journey pour poursuivre l\'itinéraire, préfectures non visitées:\n',
+                    '\nAuncune journey pour poursuivre l\'itinéraire, préfectures non visitées:\n',
+                    prefecture_depart.nom, "n'a donné aucun résultat",
                     '\n'.join(prefectures)
                 )
                 return liste_journey_finale
@@ -66,7 +67,7 @@ class itineraire:
                 min_journey = journey.plus_court_chemin(liste_journey_temp)
 
             # preparation des varaible avant la prochaine iteration
-            print('\nNouvelle iteration:\n')
+            print('\nNouvelle iteration (', len(liste_prefecture), '):\n')
             liste_journey_finale.append(min_journey)
             prefecture_depart = prefecture.find_by_gare(liste_prefecture, min_journey.arrivee)
             liste_prefecture.remove(prefecture_depart)
@@ -88,4 +89,5 @@ if __name__ == '__main__':
     voyage1 = voyage.from_list_journey(liste_journey)
     voyage1.enregistrer(connect)
 
+    print("nombre de requêtes totales: ", sncf_api.request_count)
     print('programme terminé !')

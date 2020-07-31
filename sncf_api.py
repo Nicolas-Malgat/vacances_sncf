@@ -7,6 +7,7 @@ from classe.journey import journey
 class sncf_api:
     __token_auth = os.getenv("TOKEN_AUTH")
     __path = r"https://api.sncf.com/v1/coverage/sncf"
+    request_count = 0
 
     # STATIC
     @staticmethod
@@ -23,6 +24,9 @@ class sncf_api:
 
     @classmethod
     def make_request(cls, link):
+        cls.request_count += 1
+        if cls.request_count >= 4900:
+            print('Limite de requêtes atteinte par ce processus')
         try:
             # print(link)
             return requests.get(link, auth=(cls.__token_auth, ''))
@@ -74,7 +78,8 @@ class sncf_api:
         try:
             return journey.from_json(response.json())
         except KeyError:
-            print("\nErreur, aucun trajet pour la recherche\n", path)
+            # print("\nErreur, aucun trajet pour la recherche\n", path)
+            print("O", end='')
             return None
         except AttributeError:
             print('\nErreur, la requête suivante n\'a rien renvoyé', path)

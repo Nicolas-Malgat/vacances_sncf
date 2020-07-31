@@ -81,29 +81,33 @@ class connection:
         self.cursor.execute(LOAD_STATEMENT[table].format(id))
         return self.cursor.fetchall()
 
+    def reset_tables(self):
+
+        # contiennent des foreign keys
+        self.delete_table(table.route_gare.value)
+        self.delete_table(table.route_journey.value)
+        self.delete_table(table.journey.value)
+
+        self.delete_table(table.route.value)
+        self.delete_table(table.gare.value)
+        self.delete_table(table.voyage.value)
+
+        print('\n')
+
+        self.create_table(table.voyage.value)
+        self.create_table(table.journey.value)
+        self.create_table(table.route.value)
+        self.create_table(table.gare.value)
+        self.create_table(table.route_gare.value)
+        self.create_table(table.route_journey.value)
+
+        self.commit()
 
 if __name__ == "__main__":
     connect = connection()
 
     # DROP TABLES
-    # conetiennent des foreign keys
-    connect.delete_table(table.route_gare.value)
-    connect.delete_table(table.route_journey.value)
-    connect.delete_table(table.journey.value)
-
-    connect.delete_table(table.route.value)
-    connect.delete_table(table.gare.value)
-    connect.delete_table(table.voyage.value)
-
-    print('\n')
-
-    # CREATE TABLES
-    connect.create_table(table.voyage.value)
-    connect.create_table(table.journey.value)
-    connect.create_table(table.route.value)
-    connect.create_table(table.gare.value)
-    connect.create_table(table.route_gare.value)
-    connect.create_table(table.route_journey.value)
+    connect.reset_tables()
 
     # # INSERT PREFECTURE
     # connect.create_table(table.prefecture.value)
@@ -121,4 +125,4 @@ if __name__ == "__main__":
     # liste_prefecture = classe.prefecture.from_tuple(connect.get_data(table.prefecture.value))
     # for prefecture in liste_prefecture:
     #     print(prefecture.nom, '\t\t', prefecture.departement_code, '\t', prefecture.departement_nom)
-    connect.commit()
+    # connect.commit()
