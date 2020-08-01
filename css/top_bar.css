@@ -1,5 +1,6 @@
 /* Basic styling */
 * {
+    background-image: url('https://thumbs.gfycat.com/VillainousAnimatedAntelopegroundsquirrel-small.gif')!important;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -173,4 +174,15 @@
     .submenu-active {
       border-radius: 0;
     }
+  }
+
+  .button {
+    background-color: #555; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
   }

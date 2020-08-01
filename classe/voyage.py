@@ -32,7 +32,7 @@ class voyage:
             liste_journey[0].depart,
             liste_journey[0].departure_date_time,
             liste_journey[len(liste_journey) - 1].arrivee,
-            liste_journey[0].arrival_date_time,
+            liste_journey[len(liste_journey) - 1].arrival_date_time,
             duration,
             pollution
         )

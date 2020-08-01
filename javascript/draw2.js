@@ -1,7 +1,7 @@
 (function (exports) {
     "use strict";
 
-    function initMap() {
+    function initMap(type_trajet) {
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 6,
@@ -13,6 +13,9 @@
             type: "GET",
             url: "/get_coordonnees",
             success: callbackFunc,
+            data: {
+                type_trajet: String(type_trajet)
+            },
         });
 
         var flightPlanCoordinates = [];
@@ -21,8 +24,13 @@
 
             console.log(response);
 
-            $('#duree').append("<p>" + response.duree + " secondes</p>");
-            $('#pollution').append("<p>" + response.pollution + "gEc</p>");
+            let b_duree = $('#duree')
+            b_duree.empty();
+            b_duree.append("<p>" + response.duree + " secondes</p>");
+
+            let b_ecologique = $('#pollution');
+            b_ecologique.empty();
+            b_ecologique.append("<p>" + response.pollution + "gEc</p>");
 
             flightPlanCoordinates = response.coord;
 

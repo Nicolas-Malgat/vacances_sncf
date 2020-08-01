@@ -1,10 +1,11 @@
-from bottle import route, run, static_file, template
+from bottle import route, run, static_file, template, request
 from mysql_database import connection
 from itineraire import itineraire
 from bottle import response
 from json import dumps
 
 
+@route('/duree')
 @route('/')
 @route('/index')
 def map():
@@ -13,8 +14,8 @@ def map():
 # AJAX
 @route('/get_coordonnees', method='GET')
 def get_coordonnees():
+    request.GET['type_trajet']
     try:
-        print('passage dans get_coordonnees')
         connect = connection()
         itineraire1 = itineraire(connect)
         voyage = itineraire1.load_voyage()

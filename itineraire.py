@@ -76,7 +76,7 @@ class itineraire:
         return liste_journey_finale
 
     def load_voyage(self):
-        voyage1 = voyage.load(self.conn, None, self.liste_des_gares)[0]
+        voyage1 = voyage.load(self.conn, "335405040448773220285201915937729375601", self.liste_des_gares)[0]
         return voyage1
 
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     itineraire = itineraire(connect)
 
     # construction d'un voyage
-    liste_journey1 = itineraire.calcul_voyage(type_voyage.court, "admin:fr:59350", '20200727T080000')
+    liste_journey1 = itineraire.calcul_voyage(type_voyage.ecologique, "admin:fr:59350", '20200727T080000')
     print("Enregistrement ...")
     voyage1 = voyage.from_list_journey(liste_journey1)
     voyage1.enregistrer(connect)
